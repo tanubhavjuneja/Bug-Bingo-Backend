@@ -25,6 +25,9 @@ def load_questions(file_path):
     return questions
 PY_QUESTIONS = load_questions("problems_python.txt")
 CPP_QUESTIONS = load_questions("problems_cpp.txt")
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"message": "Server is awake!"}), 200
 @app.route('/set_questions', methods=['POST'])
 def set_questions():
     data = request.get_json()
