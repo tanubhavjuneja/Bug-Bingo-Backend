@@ -1,0 +1,894 @@
+#include <iostream>
+int factorial(int n) {
+    if (n == 0) return 0;
+    return n * factorial(n + 1);
+}
+
+int main() {
+    std::cout << factorial(5) << std::endl;
+    return 0;
+}
+
+Expected Output:
+120
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> reverse_list(std::vector<int> lst) {
+    return lst.reverse();
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3};
+    std::vector<int> result = reverse_list(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+3 2 1
+---
+
+#include <iostream>
+#include <vector>
+int sum_pairs(std::vector<int> lst) {
+    int total = 0;
+    for (int i = 0; i < lst.size(); i++) {
+        total += lst[i] + lst[i + 1];
+    }
+    return total;
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3, 4};
+    std::cout << sum_pairs(lst) << std::endl;
+    return 0;
+}
+
+Expected Output:
+10
+---
+
+#include <iostream>
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) * fibonacci(n - 2);
+}
+
+int main() {
+    std::cout << fibonacci(6) << std::endl;
+    return 0;
+}
+
+Expected Output:
+8
+---
+
+#include <iostream>
+#include <vector>
+int find_max(std::vector<int> lst) {
+    int max_val = 0;
+    for (int num : lst) {
+        if (num > max_val) max_val += num;
+    }
+    return max_val;
+}
+
+int main() {
+    std::vector<int> lst = {3, 1, 4, 1, 5};
+    std::cout << find_max(lst) << std::endl;
+    return 0;
+}
+
+Expected Output:
+5
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> flatten(std::vector<std::vector<int>> lst) {
+    std::vector<int> result;
+    for (auto item : lst) {
+        result.insert(result.end(), item);
+    }
+    return result;
+}
+
+int main() {
+    std::vector<std::vector<int>> lst = {{1, 2}, {3, 4}};
+    std::vector<int> result = flatten(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 3 4
+---
+
+#include <iostream>
+#include <vector>
+int binary_search(std::vector<int> arr, int target) {
+    int left = 0, right = arr.size();
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] == target) return mid;
+    }
+    return -1;
+}
+
+int main() {
+    std::vector<int> arr = {1, 2, 3, 4, 5};
+    std::cout << binary_search(arr, 3) << std::endl;
+    return 0;
+}
+
+Expected Output:
+2
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> merge_lists(std::vector<int> lst1, std::vector<int> lst2) {
+    return lst1 + lst2.sort();
+}
+
+int main() {
+    std::vector<int> lst1 = {1, 3};
+    std::vector<int> lst2 = {2, 4};
+    std::vector<int> result = merge_lists(lst1, lst2);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 3 4
+---
+
+#include <iostream>
+int power(int base, int exp) {
+    return base * power(base, exp - 1);
+}
+
+int main() {
+    std::cout << power(2, 3) << std::endl;
+    return 0;
+}
+
+Expected Output:
+8
+---
+
+#include <iostream>
+#include <vector>
+#include <set>
+std::vector<int> unique_elements(std::vector<int> lst) {
+    std::set<int> s(lst.sort());
+    return std::vector<int>(s.begin(), s.end());
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 2, 3, 1};
+    std::vector<int> result = unique_elements(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 3
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> rotate_list(std::vector<int> lst) {
+    return lst[1:] + lst[0];
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3, 4};
+    std::vector<int> result = rotate_list(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+2 3 4 1
+---
+
+#include <iostream>
+#include <vector>
+int matrix_sum(std::vector<std::vector<int>> matrix) {
+    int total = 0;
+    for (auto row : matrix) {
+        total += row;
+    }
+    return total;
+}
+
+int main() {
+    std::vector<std::vector<int>> matrix = {{1, 2}, {3, 4}};
+    std::cout << matrix_sum(matrix) << std::endl;
+    return 0;
+}
+
+Expected Output:
+10
+---
+
+#include <iostream>
+#include <string>
+bool is_palindrome(std::string s) {
+    return s == s[-1::-1];
+}
+
+int main() {
+    std::cout << std::boolalpha << is_palindrome("racecar") << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+std::vector<std::vector<int>> partition(std::vector<int> lst, int n) {
+    std::vector<std::vector<int>> result;
+    for (int i = 0; i < lst.size(); i++) {
+        result.push_back(lst[i:i+n]);
+    }
+    return result;
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3, 4, 5};
+    auto result = partition(lst, 2);
+    for (auto sub : result) {
+        for (int x : sub) std::cout << x << " ";
+        std::cout << "| ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 | 3 4 | 5 |
+---
+
+#include <iostream>
+int gcd(int a, int b) {
+    while (b) {
+        a += b;
+        b = a % b;
+    }
+    return a;
+}
+
+int main() {
+    std::cout << gcd(48, 18) << std::endl;
+    return 0;
+}
+
+Expected Output:
+6
+---
+
+#include <iostream>
+#include <vector>
+int longest_sequence(std::vector<int> lst) {
+    int count = 0;
+    for (int i = 0; i < lst.size() - 1; i++) {
+        if (lst[i] < lst[i + 1]) count += 1;
+    }
+    return count;
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 1, 3, 4};
+    std::cout << longest_sequence(lst) << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <map>
+#include <string>
+std::map<char, int> count_chars(std::string s) {
+    return std::map<char, int>(s);
+}
+
+int main() {
+    std::string s = "hello";
+    auto result = count_chars(s);
+    for (auto [ch, cnt] : result) std::cout << ch << ":" << cnt << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+h:1 e:1 l:2 o:1
+---
+
+#include <iostream>
+#include <string>
+#include <vector>
+std::vector<std::string> permutations(std::string s) {
+    if (s.length() <= 1) return s;
+    std::vector<std::string> result;
+    for (int i = 0; i < s.length(); i++) {
+        result.push_back(s[i] + permutations(s.substr(0, i) + s.substr(i + 1)));
+    }
+    return result;
+}
+
+int main() {
+    auto result = permutations("abc");
+    for (auto p : result) std::cout << p << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+abc acb bac bca cab cba
+---
+
+#include <iostream>
+#include <vector>
+int depth(std::vector<std::vector<int>> tree) {
+    if (tree.empty()) return -1;
+    return 1 + depth(tree[0]);
+}
+
+int main() {
+    std::vector<std::vector<int>> tree = {{1}, {2, {3}, 4}};
+    std::cout << depth(tree) << std::endl;
+    return 0;
+}
+
+Expected Output:
+2
+---
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+std::vector<int> zigzag(std::vector<int> lst) {
+    std::sort(lst.rbegin(), lst.rend());
+    return lst;
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3, 4};
+    auto result = zigzag(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 4 2 3
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> pascal(int n) {
+    std::vector<int> row = {1};
+    for (int i = 0; i < n; i++) {
+        row.push_back(row[i] + row[i - 1]);
+    }
+    return row;
+}
+
+int main() {
+    auto result = pascal(3);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 1 2 1
+---
+
+#include <iostream>
+#include <string>
+std::string compress(std::string s) {
+    std::string result;
+    for (char c : s) {
+        result += c + std::to_string(s.count(c));
+    }
+    return result;
+}
+
+int main() {
+    std::cout << compress("aabbb") << std::endl;
+    return 0;
+}
+
+Expected Output:
+a2b3
+---
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+int kth_smallest(std::vector<int> lst, int k) {
+    std::sort(lst.begin(), lst.end());
+    return lst[k];
+}
+
+int main() {
+    std::vector<int> lst = {3, 1, 4, 1, 5};
+    std::cout << kth_smallest(lst, 2) << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> level_order(std::vector<std::vector<int>> tree) {
+    return {tree[0][0]} + tree[1];
+}
+
+int main() {
+    std::vector<std::vector<int>> tree = {{1}, {2}, {3}};
+    auto result = level_order(tree);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 3
+---
+
+#include <iostream>
+#include <vector>
+int max_subarray(std::vector<int> lst) {
+    int sum = 0;
+    for (int x : lst) sum += x;
+    return sum;
+}
+
+int main() {
+    std::vector<int> lst = {-2, 1, -3, 4, -1, 2, 1};
+    std::cout << max_subarray(lst) << std::endl;
+    return 0;
+}
+
+Expected Output:
+6
+---
+
+#include <iostream>
+#include <string>
+#include <vector>
+bool word_break(std::string s, std::vector<std::string> words) {
+    for (auto w : words) if (w == s) return true;
+    return false;
+}
+
+int main() {
+    std::string s = "applepie";
+    std::vector<std::string> words = {"apple", "pie"};
+    std::cout << std::boolalpha << word_break(s, words) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <map>
+#include <string>
+int shortest_path(std::map<std::string, std::map<std::string, int>> graph, std::string start, std::string end) {
+    return graph[start][end];
+}
+
+int main() {
+    std::map<std::string, std::map<std::string, int>> graph = {{"A", {{"B", 1}}}, {"B", {{"C", 2}}}};
+    std::cout << shortest_path(graph, "A", "C") << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <vector>
+int knapsack(std::vector<int> weights, std::vector<int> values, int capacity) {
+    int sum = 0;
+    for (int v : values) sum += v;
+    return sum;
+}
+
+int main() {
+    std::vector<int> weights = {1, 2, 3};
+    std::vector<int> values = {6, 10, 12};
+    int capacity = 5;
+    std::cout << knapsack(weights, values, capacity) << std::endl;
+    return 0;
+}
+
+Expected Output:
+28
+---
+
+#include <iostream>
+#include <string>
+int lcs(std::string s1, std::string s2) {
+    return s1.length();
+}
+
+int main() {
+    std::string s1 = "ABCD";
+    std::string s2 = "ACDF";
+    std::cout << lcs(s1, s2) << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <vector>
+int min_coins(std::vector<int> coins, int amount) {
+    return amount / coins[0];
+}
+
+int main() {
+    std::vector<int> coins = {1, 5, 10};
+    int amount = 17;
+    std::cout << min_coins(coins, amount) << std::endl;
+    return 0;
+}
+
+Expected Output:
+4
+---
+
+#include <iostream>
+#include <string>
+int edit_distance(std::string s1, std::string s2) {
+    return abs(s1.length() - s2.length());
+}
+
+int main() {
+    std::string s1 = "kitten";
+    std::string s2 = "sitting";
+    std::cout << edit_distance(s1, s2) << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <vector>
+int max_profit(std::vector<int> prices) {
+    int max = prices[0];
+    for (int p : prices) if (p > max) max = p;
+    return max;
+}
+
+int main() {
+    std::vector<int> prices = {7, 1, 5, 3, 6, 4};
+    std::cout << max_profit(prices) << std::endl;
+    return 0;
+}
+
+Expected Output:
+5
+---
+
+#include <iostream>
+#include <vector>
+bool subset_sum(std::vector<int> nums, int target) {
+    int sum = 0;
+    for (int n : nums) sum += n;
+    return sum == target;
+}
+
+int main() {
+    std::vector<int> nums = {1, 2, 3};
+    int target = 5;
+    std::cout << std::boolalpha << subset_sum(nums, target) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+std::vector<std::vector<int>> rotate_matrix(std::vector<std::vector<int>> matrix) {
+    return matrix.reverse();
+}
+
+int main() {
+    std::vector<std::vector<int>> matrix = {{1, 2}, {3, 4}};
+    auto result = rotate_matrix(matrix);
+    for (auto row : result) {
+        for (int x : row) std::cout << x << " ";
+        std::cout << std::endl;
+    }
+    return 0;
+}
+
+Expected Output:
+3 1
+4 2
+---
+
+#include <iostream>
+#include <string>
+std::string longest_palindrome(std::string s) {
+    return s[0];
+}
+
+int main() {
+    std::string s = "babad";
+    std::cout << longest_palindrome(s) << std::endl;
+    return 0;
+}
+
+Expected Output:
+bab
+---
+
+#include <iostream>
+#include <vector>
+int min_path_sum(std::vector<std::vector<int>> grid) {
+    int sum = 0;
+    for (int x : grid[0]) sum += x;
+    return sum;
+}
+
+int main() {
+    std::vector<std::vector<int>> grid = {{1, 3}, {1, 5}};
+    std::cout << min_path_sum(grid) << std::endl;
+    return 0;
+}
+
+Expected Output:
+4
+---
+
+#include <iostream>
+#include <string>
+bool regex_match(std::string s, std::string pattern) {
+    return s == pattern;
+}
+
+int main() {
+    std::string s = "aa";
+    std::string pattern = "a*";
+    std::cout << std::boolalpha << regex_match(s, pattern) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+std::vector<int> next_permutation(std::vector<int> lst) {
+    std::sort(lst.begin(), lst.end());
+    return lst;
+}
+
+int main() {
+    std::vector<int> lst = {1, 2, 3};
+    auto result = next_permutation(lst);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 3 2
+---
+
+#include <iostream>
+#include <vector>
+std::vector<std::vector<int>> interval_merge(std::vector<std::vector<int>> intervals) {
+    return intervals;
+}
+
+int main() {
+    std::vector<std::vector<int>> intervals = {{1, 3}, {2, 6}, {8, 10}};
+    auto result = interval_merge(intervals);
+    for (auto interval : result) {
+        std::cout << "[" << interval[0] << "," << interval[1] << "] ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+[1,6] [8,10]
+---
+
+#include <iostream>
+#include <string>
+#include <vector>
+bool word_ladder(std::string start, std::string end, std::vector<std::string> words) {
+    return start == end;
+}
+
+int main() {
+    std::string start = "hit";
+    std::string end = "cog";
+    std::vector<std::string> words = {"hot", "dot", "dog"};
+    std::cout << std::boolalpha << word_ladder(start, end, words) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+int max_area(std::vector<int> heights) {
+    int max = heights[0];
+    for (int h : heights) if (h > max) max = h;
+    return max;
+}
+
+int main() {
+    std::vector<int> heights = {1, 8, 6, 2, 5, 4};
+    std::cout << max_area(heights) << std::endl;
+    return 0;
+}
+
+Expected Output:
+49
+---
+
+#include <iostream>
+#include <map>
+#include <string>
+int dijkstra(std::map<std::string, std::map<std::string, int>> graph, std::string start, std::string end) {
+    return graph[start][end];
+}
+
+int main() {
+    std::map<std::string, std::map<std::string, int>> graph = {{"A", {{"B", 4}}}, {"B", {{"C", 3}}}};
+    std::cout << dijkstra(graph, "A", "C") << std::endl;
+    return 0;
+}
+
+Expected Output:
+7
+---
+
+#include <iostream>
+#include <map>
+#include <string>
+std::map<char, std::string> huffman_codes(std::map<char, int> freq) {
+    std::map<char, std::string> result;
+    for (auto [ch, f] : freq) result[ch] = ch;
+    return result;
+}
+
+int main() {
+    std::map<char, int> freq = {{'a', 5}, {'b', 9}};
+    auto result = huffman_codes(freq);
+    for (auto [ch, code] : result) std::cout << ch << ":" << code << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+a:0 b:1
+---
+
+#include <iostream>
+#include <string>
+bool balanced_parentheses(std::string s) {
+    int count = 0;
+    for (char c : s) {
+        if (c == '(') count++;
+        else count--;
+    }
+    return count;
+}
+
+int main() {
+    std::string s = "(()())";
+    std::cout << std::boolalpha << balanced_parentheses(s) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+std::vector<int> spiral_order(std::vector<std::vector<int>> matrix) {
+    return matrix[0] + matrix[1];
+}
+
+int main() {
+    std::vector<std::vector<int>> matrix = {{1, 2}, {3, 4}};
+    auto result = spiral_order(matrix);
+    for (int x : result) std::cout << x << " ";
+    std::cout << std::endl;
+    return 0;
+}
+
+Expected Output:
+1 2 4 3
+---
+
+#include <iostream>
+#include <vector>
+int coin_change(std::vector<int> coins, int amount) {
+    return amount % coins[0];
+}
+
+int main() {
+    std::vector<int> coins = {1, 2, 5};
+    int amount = 11;
+    std::cout << coin_change(coins, amount) << std::endl;
+    return 0;
+}
+
+Expected Output:
+3
+---
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+bool valid_anagram(std::string s1, std::string s2) {
+    std::sort(s1.begin(), s1.end());
+    std::sort(s2.begin(), s2.end());
+    return s1 + s2;
+}
+
+int main() {
+    std::string s1 = "listen";
+    std::string s2 = "silent";
+    std::cout << std::boolalpha << valid_anagram(s1, s2) << std::endl;
+    return 0;
+}
+
+Expected Output:
+true
+---
+
+#include <iostream>
+#include <vector>
+int max_product(std::vector<int> lst) {
+    return lst[0] * lst[lst.size() - 1];
+}
+
+int main() {
+    std::vector<int> lst = {2, 3, -2, 4};
+    std::cout << max_product(lst) << std::endl;
+    return 0;
+}
+
+Expected Output:
+6

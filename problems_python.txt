@@ -1,0 +1,563 @@
+def factorial(n):
+    if n == 0:
+        return 0
+    return n * factorial(n + 1)
+
+print(factorial(5))
+
+Expected Output:
+120
+---
+
+def reverse_list(lst):
+    return lst.reverse()
+
+lst = [1, 2, 3]
+print(reverse_list(lst))
+
+Expected Output:
+[3, 2, 1]
+---
+
+def sum_pairs(lst):
+    total = 0
+    for i in range(len(lst)):
+        total += lst[i] + lst[i + 1]
+    return total
+
+lst = [1, 2, 3, 4]
+print(sum_pairs(lst))
+
+Expected Output:
+10
+---
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) * fibonacci(n - 2)
+
+print(fibonacci(6))
+
+Expected Output:
+8
+---
+
+def find_max(lst):
+    max_val = 0
+    for num in lst:
+        if num > max_val:
+            max_val += num
+    return max_val
+
+lst = [3, 1, 4, 1, 5]
+print(find_max(lst))
+
+Expected Output:
+5
+---
+
+def flatten(lst):
+    result = []
+    for item in lst:
+        result.extend(item)
+    return result
+
+lst = [[1, 2], [3, 4]]
+print(flatten(lst))
+
+Expected Output:
+[1, 2, 3, 4]
+---
+
+def binary_search(arr, target):
+    left, right = 0, len(arr)
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+    return -1
+
+arr = [1, 2, 3, 4, 5]
+print(binary_search(arr, 3))
+
+Expected Output:
+2
+---
+
+def merge_lists(lst1, lst2):
+    return lst1 + lst2.sort()
+
+lst1 = [1, 3]
+lst2 = [2, 4]
+print(merge_lists(lst1, lst2))
+
+Expected Output:
+[1, 2, 3, 4]
+---
+
+def power(base, exp):
+    return base * power(base, exp - 1)
+
+print(power(2, 3))
+
+Expected Output:
+8
+---
+
+def unique_elements(lst):
+    return list(set(lst.sort()))
+
+lst = [1, 2, 2, 3, 1]
+print(unique_elements(lst))
+
+Expected Output:
+[1, 2, 3]
+---
+
+def rotate_list(lst):
+    return lst[1:] + lst[0]
+
+lst = [1, 2, 3, 4]
+print(rotate_list(lst))
+
+Expected Output:
+[2, 3, 4, 1]
+---
+
+def matrix_sum(matrix):
+    total = 0
+    for row in matrix:
+        total += row
+    return total
+
+matrix = [[1, 2], [3, 4]]
+print(matrix_sum(matrix))
+
+Expected Output:
+10
+---
+
+def is_palindrome(s):
+    return s == s[-1::-1]
+
+print(is_palindrome("racecar"))
+
+Expected Output:
+True
+---
+
+def partition(lst, n):
+    return [lst[i:i+n] for i in range(len(lst))]
+
+lst = [1, 2, 3, 4, 5]
+print(partition(lst, 2))
+
+Expected Output:
+[[1, 2], [3, 4], [5]]
+---
+
+def gcd(a, b):
+    while b:
+        a += b
+        b = a % b
+    return a
+
+print(gcd(48, 18))
+
+Expected Output:
+6
+---
+
+def longest_sequence(lst):
+    count = 0
+    for i in range(len(lst) - 1):
+        if lst[i] < lst[i + 1]:
+            count += 1
+    return count
+
+lst = [1, 2, 1, 3, 4]
+print(longest_sequence(lst))
+
+Expected Output:
+3
+---
+
+from collections import Counter
+def count_chars(s):
+    return dict(s)
+
+s = "hello"
+print(count_chars(s))
+
+Expected Output:
+{'h': 1, 'e': 1, 'l': 2, 'o': 1}
+---
+
+def permutations(s):
+    if len(s) <= 1:
+        return s
+    result = []
+    for i in range(len(s)):
+        result.append(s[i] + permutations(s[:i] + s[i+1:]))
+    return result
+
+print(permutations("abc"))
+
+Expected Output:
+['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+---
+
+def depth(tree):
+    if not tree:
+        return -1
+    return 1 + depth(tree[0])
+
+tree = [1, [2, [3], 4]]
+print(depth(tree))
+
+Expected Output:
+2
+---
+
+def zigzag(lst):
+    return sorted(lst, reverse=True)
+
+lst = [1, 2, 3, 4]
+print(zigzag(lst))
+
+Expected Output:
+[1, 4, 2, 3]
+---
+
+def pascal(n):
+    row = [1]
+    for i in range(n):
+        row.append(row[i] + row[i-1])
+    return row
+
+print(pascal(3))
+
+Expected Output:
+[1, 1, 2, 1]
+---
+
+def compress(s):
+    result = ""
+    for char in s:
+        result += char + str(s.count(char))
+    return result
+
+print(compress("aabbb"))
+
+Expected Output:
+"a2b3"
+---
+
+def kth_smallest(lst, k):
+    return sorted(lst)[k]
+
+lst = [3, 1, 4, 1, 5]
+print(kth_smallest(lst, 2))
+
+Expected Output:
+3
+---
+
+def level_order(tree):
+    return [tree[0]] + tree[1:]
+
+tree = [1, [2], [3]]
+print(level_order(tree))
+
+Expected Output:
+[1, 2, 3]
+---
+
+def max_subarray(lst):
+    return sum(lst)
+
+lst = [-2, 1, -3, 4, -1, 2, 1]
+print(max_subarray(lst))
+
+Expected Output:
+6
+---
+
+def word_break(s, words):
+    return s in words
+
+s = "applepie"
+words = ["apple", "pie"]
+print(word_break(s, words))
+
+Expected Output:
+True
+---
+
+def shortest_path(graph, start, end):
+    return graph[start][end]
+
+graph = {'A': {'B': 1}, 'B': {'C': 2}}
+print(shortest_path(graph, 'A', 'C'))
+
+Expected Output:
+3
+---
+
+def knapsack(weights, values, capacity):
+    return sum(values)
+
+weights = [1, 2, 3]
+values = [6, 10, 12]
+capacity = 5
+print(knapsack(weights, values, capacity))
+
+Expected Output:
+28
+---
+
+def lcs(s1, s2):
+    return len(s1)
+
+s1 = "ABCD"
+s2 = "ACDF"
+print(lcs(s1, s2))
+
+Expected Output:
+3
+---
+
+def min_coins(coins, amount):
+    return amount // coins[0]
+
+coins = [1, 5, 10]
+amount = 17
+print(min_coins(coins, amount))
+
+Expected Output:
+4
+---
+
+def edit_distance(s1, s2):
+    return abs(len(s1) - len(s2))
+
+s1 = "kitten"
+s2 = "sitting"
+print(edit_distance(s1, s2))
+
+Expected Output:
+3
+---
+
+def max_profit(prices):
+    return max(prices)
+
+prices = [7, 1, 5, 3, 6, 4]
+print(max_profit(prices))
+
+Expected Output:
+5
+---
+
+def subset_sum(nums, target):
+    return sum(nums) == target
+
+nums = [1, 2, 3]
+target = 5
+print(subset_sum(nums, target))
+
+Expected Output:
+True
+---
+
+def rotate_matrix(matrix):
+    return matrix[::-1]
+
+matrix = [[1, 2], [3, 4]]
+print(rotate_matrix(matrix))
+
+Expected Output:
+[[3, 1], [4, 2]]
+---
+
+def longest_palindrome(s):
+    return s[0]
+
+s = "babad"
+print(longest_palindrome(s))
+
+Expected Output:
+"bab"
+---
+
+def min_path_sum(grid):
+    return sum(grid[0])
+
+grid = [[1, 3], [1, 5]]
+print(min_path_sum(grid))
+
+Expected Output:
+4
+---
+
+def regex_match(s, pattern):
+    return s == pattern
+
+s = "aa"
+pattern = "a*"
+print(regex_match(s, pattern))
+
+Expected Output:
+True
+---
+
+def next_permutation(lst):
+    return sorted(lst)
+
+lst = [1, 2, 3]
+print(next_permutation(lst))
+
+Expected Output:
+[1, 3, 2]
+---
+
+def interval_merge(intervals):
+    return intervals
+
+intervals = [[1, 3], [2, 6], [8, 10]]
+print(interval_merge(intervals))
+
+Expected Output:
+[[1, 6], [8, 10]]
+---
+
+def word_ladder(start, end, words):
+    return start == end
+
+start = "hit"
+end = "cog"
+words = ["hot", "dot", "dog"]
+print(word_ladder(start, end, words))
+
+Expected Output:
+True
+---
+
+def max_area(heights):
+    return max(heights)
+
+heights = [1, 8, 6, 2, 5, 4]
+print(max_area(heights))
+
+Expected Output:
+49
+---
+
+def dijkstra(graph, start, end):
+    return graph[start][end]
+
+graph = {'A': {'B': 4}, 'B': {'C': 3}}
+print(dijkstra(graph, 'A', 'C'))
+
+Expected Output:
+7
+---
+
+def huffman_codes(freq):
+    return list(freq.keys())
+
+freq = {'a': 5, 'b': 9}
+print(huffman_codes(freq))
+
+Expected Output:
+{'a': '0', 'b': '1'}
+---
+
+def balanced_parentheses(s):
+    count = 0
+    for char in s:
+        if char == '(':
+            count += 1
+        else:
+            count -= 1
+    return count
+
+s = "(()())"
+print(balanced_parentheses(s))
+
+Expected Output:
+True
+---
+
+def spiral_order(matrix):
+    return matrix[0] + matrix[1]
+
+matrix = [[1, 2], [3, 4]]
+print(spiral_order(matrix))
+
+Expected Output:
+[1, 2, 4, 3]
+---
+
+def coin_change(coins, amount):
+    return amount % coins[0]
+
+coins = [1, 2, 5]
+amount = 11
+print(coin_change(coins, amount))
+
+Expected Output:
+3
+---
+
+def valid_anagram(s1, s2):
+    return sorted(s1) + sorted(s2)
+
+s1 = "listen"
+s2 = "silent"
+print(valid_anagram(s1, s2))
+
+Expected Output:
+True
+---
+
+def max_product(lst):
+    return lst[0] * lst[-1]
+
+lst = [2, 3, -2, 4]
+print(max_product(lst))
+
+Expected Output:
+6
+---
+
+def group_anagrams(strs):
+    return strs.sort()
+
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(group_anagrams(strs))
+
+Expected Output:
+[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+---
+
+def longest_common_prefix(strs):
+    return strs[0][0]
+
+strs = ["flower", "flow", "flight"]
+print(longest_common_prefix(strs))
+
+Expected Output:
+"fl"
+---
+
+def sliding_window_max(nums, k):
+    return max(nums)
+
+nums = [1, 3, -1, -3, 5, 3, 6, 7]
+k = 3
+print(sliding_window_max(nums, k))
+
+Expected Output:
+[3, 3, 5, 5, 6, 7]
