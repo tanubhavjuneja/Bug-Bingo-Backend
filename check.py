@@ -49,7 +49,7 @@ def execute():
         if language == "python":
             suffix = ".py"
             command = ["python", "{}"]
-        elif language == "cpp":
+        elif language == "c++":
             suffix = ".cpp"
             command = ["g++", "{}", "-o", "{}.out"]
         else:
