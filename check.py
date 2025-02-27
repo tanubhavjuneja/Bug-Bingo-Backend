@@ -13,7 +13,7 @@ DB_CONFIG = {
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
     "host": os.getenv("DB_HOST"),
-    "port": int(os.getenv("DB_PORT"))  
+    "port": 3306 
 }
 def get_db_connection():
     try:
