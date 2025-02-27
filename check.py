@@ -93,11 +93,16 @@ def execute():
         if language == "python":
             suffix = ".py"
             command = ["python", "{}"]
+            cheat_patterns = [f'print("{expected_output}")', f"print('{expected_output}')",f'print ("{expected_output}")', f"print ('{expected_output}')"]
         elif language == "c++":
             suffix = ".cpp"
             command = ["g++", "{}", "-o", "{}.out"]
+            cheat_patterns = [f'cout << "{expected_output}"', f"cout << '{expected_output}'",f"cout <<'{expected_output}'",f"cout<< '{expected_output}'",f'cout<< "{expected_output}"',f'cout <<"{expected_output}"']
         else:
             return jsonify({"incorrect": False, "message": "Unsupported language!"})
+        for pattern in cheat_patterns:
+            if pattern in user_code:
+                return jsonify({"incorrect": False, "message": "Cheating detected!"})
         with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=suffix) as temp_file:
             temp_file.write(user_code)
             temp_file_name = temp_file.name
