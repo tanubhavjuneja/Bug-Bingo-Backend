@@ -4,31 +4,52 @@ import os
 import random
 import subprocess
 import tempfile
-import psycopg2
-from psycopg2 import Error
-
+import mysql.connector
+from mysql.connector import Error
 app = Flask(__name__)
 CORS(app)
-
-# Database configuration
 DB_CONFIG = {
-    "dbname": "bingo_brwt",
-    "user": "tanubhavjuneja",
-    "password": "2k813IoYRfmaF32k8JmHbq9Y3mFCSsUz",
-    "host": "postgresql://tanubhavjuneja:2k813IoYRfmaF32k8JmHbq9Y3mFCSsUz@dpg-cv03ms0gph6c73c6qs0g-a/bingo_brwt",
-    "port": "5432"
+    "database": "sql12765067",
+    "user": "sql12765067",
+    "password": "bLc84ApNEb",
+    "host": "sql12.freesqldatabase.com",
+    "port": "3306" 
 }
-
-# Function to establish database connection
 def get_db_connection():
     try:
-        conn = psycopg2.connect(**DB_CONFIG)
+        conn = mysql.connector.connect(**DB_CONFIG)
         return conn
     except Error as e:
-        print(f"Error connecting to PostgreSQL: {e}")
+        print(f"Error connecting to MySQL: {e}")
         return None
-
-# Load questions (unchanged)
+@app.route('/submit_score', methods=['POST'])
+def submit_score():
+    data = request.get_json()
+    name = data.get('name')
+    rollno = data.get('rollno')
+    score = data.get('score')
+    if name and rollno and score is not None:
+        conn = get_db_connection()
+        if conn is None:
+            return jsonify({"status": "error", "message": "Database connection failed"}), 500
+        try:
+            cur = conn.cursor()
+            cur.execute("""
+                INSERT INTO scores (name, rollno, score)
+                VALUES (%s, %s, %s)
+                ON DUPLICATE KEY UPDATE name = VALUES(name), score = VALUES(score);
+            """, (name, rollno, score))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return jsonify({"status": "success"})
+        except Error as e:
+            conn.rollback()
+            cur.close()
+            conn.close()
+            return jsonify({"status": "error", "message": str(e)}), 500
+    else:
+        return jsonify({"status": "error", "message": "Missing required fields"}), 400
 def load_questions(file_path):
     questions = []
     if not os.path.exists(file_path):
@@ -114,39 +135,5 @@ def execute():
         return jsonify({"incorrect": False, "message": "Code execution timed out!"})
     except Exception as e:
         return jsonify({"incorrect": False, "message": f"Error: {str(e)}"})
-
-@app.route('/submit_score', methods=['POST'])
-def submit_score():
-    data = request.get_json()
-    name = data.get('name')
-    rollno = data.get('rollno')
-    score = data.get('score')
-    
-    if name and rollno and score is not None:
-        conn = get_db_connection()
-        if conn is None:
-            return jsonify({"status": "error", "message": "Database connection failed"}), 500
-        
-        try:
-            cur = conn.cursor()
-            # Insert or update score in the database
-            cur.execute("""
-                INSERT INTO scores (name, rollno, score)
-                VALUES (%s, %s, %s)
-                ON CONFLICT (rollno)
-                DO UPDATE SET score = EXCLUDED.score, name = EXCLUDED.name;
-            """, (name, rollno, score))
-            conn.commit()
-            cur.close()
-            conn.close()
-            return jsonify({"status": "success"})
-        except Error as e:
-            conn.rollback()
-            cur.close()
-            conn.close()
-            return jsonify({"status": "error", "message": str(e)}), 500
-    else:
-        return jsonify({"status": "error", "message": "Missing required fields"}), 400
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
