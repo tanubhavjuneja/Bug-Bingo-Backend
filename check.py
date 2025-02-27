@@ -87,5 +87,20 @@ def execute():
         return jsonify({"incorrect": False, "message": "Code execution timed out!"})
     except Exception as e:
         return jsonify({"incorrect": False, "message": f"Error: {str(e)}"})
+@app.route('/submit_score', methods=['POST'])
+def submit_score():
+    data = request.get_json()
+    name = data.get('name')
+    rollno = data.get('rollno')
+    score = data.get('score')
+    if name and rollno and score is not None:
+        try:
+            with open('score.txt', 'a') as f:
+                f.write(f"Name: {name}, RollNo: {rollno}, Score: {score}\n")
+            return jsonify({"status": "success"})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
+    else:
+        return jsonify({"status": "error", "message": "Missing required fields"}), 400
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
