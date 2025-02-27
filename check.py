@@ -4,8 +4,31 @@ import os
 import random
 import subprocess
 import tempfile
+import psycopg2
+from psycopg2 import Error
+
 app = Flask(__name__)
 CORS(app)
+
+# Database configuration
+DB_CONFIG = {
+    "dbname": "bingo_brwt",
+    "user": "tanubhavjuneja",
+    "password": "2k813IoYRfmaF32k8JmHbq9Y3mFCSsUz",
+    "host": "postgresql://tanubhavjuneja:2k813IoYRfmaF32k8JmHbq9Y3mFCSsUz@dpg-cv03ms0gph6c73c6qs0g-a/bingo_brwt",
+    "port": "5432"
+}
+
+# Function to establish database connection
+def get_db_connection():
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        return conn
+    except Error as e:
+        print(f"Error connecting to PostgreSQL: {e}")
+        return None
+
+# Load questions (unchanged)
 def load_questions(file_path):
     questions = []
     if not os.path.exists(file_path):
@@ -23,11 +46,14 @@ def load_questions(file_path):
                 "expected_output": expected_output.strip()
             })
     return questions
+
 PY_QUESTIONS = load_questions("problems_python.txt")
 CPP_QUESTIONS = load_questions("problems_cpp.txt")
+
 @app.route('/ping', methods=['GET'])
 def ping():
     return jsonify({"message": "Server is awake!"}), 200
+
 @app.route('/set_questions', methods=['POST'])
 def set_questions():
     data = request.get_json()
@@ -37,6 +63,7 @@ def set_questions():
         return jsonify({"error": "No questions available"}), 404
     selected_questions = random.sample(questions, min(9, len(questions)))
     return jsonify(selected_questions)
+
 @app.route('/execute', methods=['POST'])
 def execute():
     data = request.json
@@ -87,20 +114,39 @@ def execute():
         return jsonify({"incorrect": False, "message": "Code execution timed out!"})
     except Exception as e:
         return jsonify({"incorrect": False, "message": f"Error: {str(e)}"})
+
 @app.route('/submit_score', methods=['POST'])
 def submit_score():
     data = request.get_json()
     name = data.get('name')
     rollno = data.get('rollno')
     score = data.get('score')
+    
     if name and rollno and score is not None:
+        conn = get_db_connection()
+        if conn is None:
+            return jsonify({"status": "error", "message": "Database connection failed"}), 500
+        
         try:
-            with open('score.txt', 'a') as f:
-                f.write(f"Name: {name}, RollNo: {rollno}, Score: {score}\n")
+            cur = conn.cursor()
+            # Insert or update score in the database
+            cur.execute("""
+                INSERT INTO scores (name, rollno, score)
+                VALUES (%s, %s, %s)
+                ON CONFLICT (rollno)
+                DO UPDATE SET score = EXCLUDED.score, name = EXCLUDED.name;
+            """, (name, rollno, score))
+            conn.commit()
+            cur.close()
+            conn.close()
             return jsonify({"status": "success"})
-        except Exception as e:
+        except Error as e:
+            conn.rollback()
+            cur.close()
+            conn.close()
             return jsonify({"status": "error", "message": str(e)}), 500
     else:
         return jsonify({"status": "error", "message": "Missing required fields"}), 400
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
