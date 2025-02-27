@@ -8,13 +8,6 @@ import mysql.connector
 from mysql.connector import Error
 app = Flask(__name__)
 CORS(app)
-DB_CONFIG = {
-    "database": "sql12765067",
-    "user": "sql12765067",
-    "password": "bLc84ApNEb",
-    "host": "sql12.freesqldatabase.com",
-    "port": "3306" 
-}
 def get_db_connection():
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
@@ -67,14 +60,11 @@ def load_questions(file_path):
                 "expected_output": expected_output.strip()
             })
     return questions
-
 PY_QUESTIONS = load_questions("problems_python.txt")
 CPP_QUESTIONS = load_questions("problems_cpp.txt")
-
 @app.route('/ping', methods=['GET'])
 def ping():
     return jsonify({"message": "Server is awake!"}), 200
-
 @app.route('/set_questions', methods=['POST'])
 def set_questions():
     data = request.get_json()
@@ -84,7 +74,6 @@ def set_questions():
         return jsonify({"error": "No questions available"}), 404
     selected_questions = random.sample(questions, min(9, len(questions)))
     return jsonify(selected_questions)
-
 @app.route('/execute', methods=['POST'])
 def execute():
     data = request.json
