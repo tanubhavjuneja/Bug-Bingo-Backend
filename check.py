@@ -8,7 +8,13 @@ import mysql.connector
 from mysql.connector import Error
 app = Flask(__name__)
 CORS(app)
-DB_CONFIG=os.environ.get('DB_CONFIG')
+DB_CONFIG = {
+    "database": os.getenv("DB_DATABASE"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "host": os.getenv("DB_HOST"),
+    "port": int(os.getenv("DB_PORT"))  
+}
 def get_db_connection():
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
