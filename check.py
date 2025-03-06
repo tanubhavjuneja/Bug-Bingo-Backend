@@ -180,28 +180,52 @@ def execute1():
         if language == "python":
             suffix = ".py"
             command = ["python", "{}"]
+            output_command = "print"
         elif language == "c++":
             suffix = ".cpp"
             command = ["g++", "{}", "-o", "{}.out"]
+            output_command = "cout"
         else:
             return jsonify({"incorrect": False, "message": "Unsupported language!"})
+        code_lines = user_code.splitlines()
+        for line in code_lines:
+            line = line.strip() 
+            if output_command in line and expected_output in line:
+                return jsonify({"incorrect": False, "message": "Cheating detected!"})
         start_time = time.time()
         with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=suffix) as temp_file:
             temp_file.write(user_code)
             temp_file_name = temp_file.name
-        if language == "c++":
-            compile_result = subprocess.run(["g++", temp_file_name, "-o", temp_file_name + ".out"], capture_output=True, text=True)
+        if language == "cpp":
+            compile_result = subprocess.run(
+                command[0:3] + [temp_file_name, temp_file_name + ".out"],
+                capture_output=True,
+                text=True
+            )
             if compile_result.returncode != 0:
                 return jsonify({"incorrect": False, "message": "Compilation failed!"})
-            result = subprocess.run([temp_file_name + ".out"], capture_output=True, text=True, timeout=3)
+            result = subprocess.run(
+                [temp_file_name + ".out"],
+                capture_output=True,
+                text=True,
+                timeout=3
+            )
         else:
-            result = subprocess.run(["python", temp_file_name], capture_output=True, text=True, timeout=3)
+            result = subprocess.run(
+                [command[0], temp_file_name],
+                capture_output=True,
+                text=True,
+                timeout=3
+            )
         execution_time = round(time.time() - start_time, 3)
         actual_output = result.stdout.strip()
         is_correct = actual_output == expected_output
         status_message = "Correct" if is_correct else f"Expected: {expected_output}, Got: {actual_output}"
         save_submission(user_info.get("name"), user_info.get("rollno"), user_code, execution_time, status_message, language)
-        return jsonify({"correct": is_correct, "message": status_message})
+        if actual_output == expected_output:
+            return jsonify({"correct": True})
+        else:
+            return jsonify({"incorrect": False, "message": status_message})
     except subprocess.TimeoutExpired:
         return jsonify({"incorrect": False, "message": "Code execution timed out!"})
     except Exception as e:
