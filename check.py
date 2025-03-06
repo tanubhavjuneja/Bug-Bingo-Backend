@@ -103,10 +103,25 @@ def execute():
         else:
             return jsonify({"incorrect": False, "message": "Unsupported language!"})
         code_lines = user_code.splitlines()
+        cpp_output_block = ""
         for line in code_lines:
-            line = line.strip() 
-            if output_command in line and expected_output in line:
-                return jsonify({"incorrect": False, "message": "Cheating detected!"})
+            line = line.strip()
+            if language == "python":
+                if output_command in line and expected_output in line:
+                    return jsonify({"incorrect": False, "message": "Cheating detected!"})
+            elif language == "c++":
+                if "cout" in line:
+                    cpp_output_block += line
+                    if ";" in line: 
+                        if expected_output in cpp_output_block:
+                            return jsonify({"incorrect": False, "message": "Cheating detected!"})
+                        cpp_output_block = "" 
+                elif cpp_output_block: 
+                    cpp_output_block += line
+                    if ";" in line: 
+                        if expected_output in cpp_output_block:
+                            return jsonify({"incorrect": False, "message": "Cheating detected!"})
+                        cpp_output_block = ""
         with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=suffix) as temp_file:
             temp_file.write(user_code)
             temp_file_name = temp_file.name
