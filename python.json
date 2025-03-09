@@ -1,0 +1,614 @@
+[
+    {
+        "id": 1,
+        "explanation": "Calculate the factorial of a given non-negative integer n.",
+        "function": "def factorial(n):\n\tif n == 0:\n\t\treturn 0\n\treturn n * factorial(n - 1)",
+        "test_cases": [
+            {"input": "print(factorial(0))", "expected_output": "1"},
+            {"input": "print(factorial(1))", "expected_output": "1"},
+            {"input": "print(factorial(5))", "expected_output": "120"},
+            {"input": "print(factorial(3))", "expected_output": "6"},
+            {"input": "print(factorial(4))", "expected_output": "24"}
+        ]
+    },
+    {
+        "id": 2,
+        "explanation": "Reverse the elements of a given list.",
+        "function": "def reverse_list(lst):\n\tlst.sort()\n\treturn lst",
+        "test_cases": [
+            {"input": "print(reverse_list([1, 2, 3]))", "expected_output": "[3, 2, 1]"},
+            {"input": "print(reverse_list([]))", "expected_output": "[]"},
+            {"input": "print(reverse_list([1]))", "expected_output": "[1]"},
+            {"input": "print(reverse_list([1, 2]))", "expected_output": "[2, 1]"},
+            {"input": "print(reverse_list([3, 1, 4]))", "expected_output": "[4, 1, 3]"}
+        ]
+    },
+    {
+        "id": 3,
+        "explanation": "Calculate the sum of every two consecutive elements in the list.",
+        "function": "def sum_pairs(lst):\n\ttotal = 0\n\tfor i in range(len(lst)):\n\t\ttotal += lst[i]\n\treturn total",
+        "test_cases": [
+            {"input": "print(sum_pairs([1, 2, 3, 4]))", "expected_output": "15"},
+            {"input": "print(sum_pairs([1, 2]))", "expected_output": "3"},
+            {"input": "print(sum_pairs([5, 5, 5, 5]))", "expected_output": "30"},
+            {"input": "print(sum_pairs([0, 1]))", "expected_output": "1"},
+            {"input": "print(sum_pairs([2, 3, 4]))", "expected_output": "12"}
+        ]
+    },
+    {
+        "id": 4,
+        "explanation": "Compute the nth Fibonacci number (F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2) for n>1).",
+        "function": "def fibonacci(n):\n\tif n <= 1:\n\t\treturn n + 1\n\treturn fibonacci(n - 1) + fibonacci(n - 2)",
+        "test_cases": [
+            {"input": "print(fibonacci(0))", "expected_output": "0"},
+            {"input": "print(fibonacci(1))", "expected_output": "1"},
+            {"input": "print(fibonacci(6))", "expected_output": "8"},
+            {"input": "print(fibonacci(4))", "expected_output": "3"},
+            {"input": "print(fibonacci(5))", "expected_output": "5"}
+        ]
+    },
+    {
+        "id": 5,
+        "explanation": "Find the maximum value in a list of numbers.",
+        "function": "def find_max(lst):\n\tif not lst:\n\t\treturn None\n\tmax_val = lst[0]\n\tfor num in lst:\n\t\tif num < max_val:\n\t\t\tmax_val = num\n\treturn max_val",
+        "test_cases": [
+            {"input": "print(find_max([3, 1, 4, 1, 5]))", "expected_output": "5"},
+            {"input": "print(find_max([]))", "expected_output": "None"},
+            {"input": "print(find_max([10]))", "expected_output": "10"},
+            {"input": "print(find_max([7, 2, 8]))", "expected_output": "8"},
+            {"input": "print(find_max([0, -1, -2]))", "expected_output": "0"}
+        ]
+    },
+    {
+        "id": 6,
+        "explanation": "Flatten a list of lists into a single list.",
+        "function": "def flatten(lst):\n\tresult = []\n\tfor item in lst:\n\t\tresult.append(item)\n\treturn result",
+        "test_cases": [
+            {"input": "print(flatten([[1, 2], [3, 4]]))", "expected_output": "[1, 2, 3, 4]"},
+            {"input": "print(flatten([]))", "expected_output": "[]"},
+            {"input": "print(flatten([[1], [2]]))", "expected_output": "[1, 2]"},
+            {"input": "print(flatten([[1, 2, 3]]))", "expected_output": "[1, 2, 3]"},
+            {"input": "print(flatten([[5, 6], [7, 8]]))", "expected_output": "[5, 6, 7, 8]"}
+        ]
+    },
+    {
+        "id": 7,
+        "explanation": "Perform binary search to find the index of a target value in a sorted list.",
+        "function": "def binary_search(arr, target):\n\tleft, right = 0, len(arr)\n\twhile left <= right:\n\t\tmid = (left + right) // 2\n\t\tif arr[mid] == target:\n\t\t\treturn mid\n\t\telif arr[mid] < target:\n\t\t\tleft = mid + 1\n\t\telse:\n\t\t\tright = mid - 1\n\treturn -1",
+        "test_cases": [
+            {"input": "print(binary_search([1, 2, 3, 4, 5], 3))", "expected_output": "2"},
+            {"input": "print(binary_search([1, 2, 3, 4, 5], 6))", "expected_output": "-1"},
+            {"input": "print(binary_search([], 1))", "expected_output": "-1"},
+            {"input": "print(binary_search([1], 1))", "expected_output": "0"},
+            {"input": "print(binary_search([1, 3, 5, 7, 9], 5))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 8,
+        "explanation": "Merge two lists and sort the result.",
+        "function": "def merge_lists(lst1, lst2):\n\treturn lst1 + lst2",
+        "test_cases": [
+            {"input": "print(merge_lists([1, 3], [2, 4]))", "expected_output": "[1, 2, 3, 4]"},
+            {"input": "print(merge_lists([], []))", "expected_output": "[]"},
+            {"input": "print(merge_lists([1], [2]))", "expected_output": "[1, 2]"},
+            {"input": "print(merge_lists([1, 2], []))", "expected_output": "[1, 2]"},
+            {"input": "print(merge_lists([4, 5], [1, 2]))", "expected_output": "[1, 2, 4, 5]"}
+        ]
+    },
+    {
+        "id": 9,
+        "explanation": "Calculate the power of a base raised to an exponent.",
+        "function": "def power(base, exp):\n\tif exp == 0:\n\t\treturn 0\n\treturn base * power(base, exp - 1)",
+        "test_cases": [
+            {"input": "print(power(2, 3))", "expected_output": "8"},
+            {"input": "print(power(5, 0))", "expected_output": "1"},
+            {"input": "print(power(3, 1))", "expected_output": "3"},
+            {"input": "print(power(2, 5))", "expected_output": "32"},
+            {"input": "print(power(10, 2))", "expected_output": "100"}
+        ]
+    },
+    {
+        "id": 10,
+        "explanation": "Return a list of unique elements from the input list.",
+        "function": "def unique_elements(lst):\n\treturn lst",
+        "test_cases": [
+            {"input": "print(unique_elements([1, 2, 2, 3, 1]))", "expected_output": "[1, 2, 3]"},
+            {"input": "print(unique_elements([]))", "expected_output": "[]"},
+            {"input": "print(unique_elements([1, 1, 1]))", "expected_output": "[1]"},
+            {"input": "print(unique_elements([1, 2, 3]))", "expected_output": "[1, 2, 3]"},
+            {"input": "print(unique_elements([4, 5, 4, 5]))", "expected_output": "[4, 5]"}
+        ]
+    },
+    {
+        "id": 11,
+        "explanation": "Rotate the list by moving the first element to the end.",
+        "function": "def rotate_list(lst):\n\tif lst:\n\t\treturn lst[:-1]\n\treturn lst",
+        "test_cases": [
+            {"input": "print(rotate_list([1, 2, 3, 4]))", "expected_output": "[2, 3, 4, 1]"},
+            {"input": "print(rotate_list([]))", "expected_output": "[]"},
+            {"input": "print(rotate_list([1]))", "expected_output": "[1]"},
+            {"input": "print(rotate_list([1, 2]))", "expected_output": "[2, 1]"},
+            {"input": "print(rotate_list([5, 6, 7]))", "expected_output": "[6, 7, 5]"}
+        ]
+    },
+    {
+        "id": 12,
+        "explanation": "Calculate the sum of all elements in a 2D matrix.",
+        "function": "def matrix_sum(matrix):\n\ttotal = 0\n\tfor row in matrix:\n\t\ttotal += row[0]\n\treturn total",
+        "test_cases": [
+            {"input": "print(matrix_sum([[1, 2], [3, 4]]))", "expected_output": "10"},
+            {"input": "print(matrix_sum([]))", "expected_output": "0"},
+            {"input": "print(matrix_sum([[5]]))", "expected_output": "5"},
+            {"input": "print(matrix_sum([[1, 1], [1, 1]]))", "expected_output": "4"},
+            {"input": "print(matrix_sum([[0, 0], [0, 0]]))", "expected_output": "0"}
+        ]
+    },
+    {
+        "id": 13,
+        "explanation": "Check if a given string is a palindrome.",
+        "function": "def is_palindrome(s):\n\treturn s == s",
+        "test_cases": [
+            {"input": "print(is_palindrome(\"racecar\"))", "expected_output": "True"},
+            {"input": "print(is_palindrome(\"hello\"))", "expected_output": "False"},
+            {"input": "print(is_palindrome(\"\"))", "expected_output": "True"},
+            {"input": "print(is_palindrome(\"a\"))", "expected_output": "True"},
+            {"input": "print(is_palindrome(\"ab\"))", "expected_output": "False"}
+        ]
+    },
+    {
+        "id": 14,
+        "explanation": "Partition the list into sublists of size n.",
+        "function": "def partition(lst, n):\n\treturn [lst[i:i+1] for i in range(0, len(lst), n)]",
+        "test_cases": [
+            {"input": "print(partition([1, 2, 3, 4, 5], 2))", "expected_output": "[[1, 2], [3, 4], [5]]"},
+            {"input": "print(partition([1, 2, 3], 1))", "expected_output": "[[1], [2], [3]]"},
+            {"input": "print(partition([], 3))", "expected_output": "[]"},
+            {"input": "print(partition([1, 2], 2))", "expected_output": "[[1, 2]]"},
+            {"input": "print(partition([1, 2, 3, 4], 3))", "expected_output": "[[1, 2, 3], [4]]"}
+        ]
+    },
+    {
+        "id": 15,
+        "explanation": "Compute the greatest common divisor (GCD) of two numbers.",
+        "function": "def gcd(a, b):\n\twhile b:\n\t\ta, b = a, b\n\treturn a",
+        "test_cases": [
+            {"input": "print(gcd(48, 18))", "expected_output": "6"},
+            {"input": "print(gcd(0, 5))", "expected_output": "5"},
+            {"input": "print(gcd(7, 0))", "expected_output": "7"},
+            {"input": "print(gcd(14, 21))", "expected_output": "7"},
+            {"input": "print(gcd(100, 80))", "expected_output": "20"}
+        ]
+    },
+    {
+        "id": 16,
+        "explanation": "Find the length of the longest increasing subsequence in the list.",
+        "function": "def longest_sequence(lst):\n\tif not lst:\n\t\treturn 0\n\treturn len(lst)",
+        "test_cases": [
+            {"input": "print(longest_sequence([1, 2, 1, 3, 4]))", "expected_output": "2"},
+            {"input": "print(longest_sequence([1, 3, 5, 7]))", "expected_output": "4"},
+            {"input": "print(longest_sequence([5, 4, 3, 2]))", "expected_output": "1"},
+            {"input": "print(longest_sequence([]))", "expected_output": "0"},
+            {"input": "print(longest_sequence([2]))", "expected_output": "1"}
+        ]
+    },
+    {
+        "id": 17,
+        "explanation": "Count the frequency of each character in a string.",
+        "function": "def count_chars(s):\n\tfrom collections import Counter\n\treturn dict(Counter(s[0] if s else ''))",
+        "test_cases": [
+            {"input": "print(count_chars(\"hello\"))", "expected_output": "{'h': 1, 'e': 1, 'l': 2, 'o': 1}"},
+            {"input": "print(count_chars(\"\"))", "expected_output": "{}"},
+            {"input": "print(count_chars(\"a\"))", "expected_output": "{'a': 1}"},
+            {"input": "print(count_chars(\"aaab\"))", "expected_output": "{'a': 3, 'b': 1}"},
+            {"input": "print(count_chars(\"abcabc\"))", "expected_output": "{'a': 2, 'b': 2, 'c': 2}"}
+        ]
+    },
+    {
+        "id": 18,
+        "explanation": "Generate all permutations of a string.",
+        "function": "def permutations(s):\n\tif len(s) <= 1:\n\t\treturn [s]\n\treturn [s]",
+        "test_cases": [
+            {"input": "print(permutations(\"abc\"))", "expected_output": "['abc', 'acb', 'bac', 'bca', 'cab', 'cba']"},
+            {"input": "print(permutations(\"\"))", "expected_output": "['']"},
+            {"input": "print(permutations(\"a\"))", "expected_output": "['a']"},
+            {"input": "print(permutations(\"ab\"))", "expected_output": "['ab', 'ba']"},
+            {"input": "print(permutations(\"123\"))", "expected_output": "['123', '132', '213', '231', '312', '321']"}
+        ]
+    },
+    {
+        "id": 19,
+        "explanation": "Find the depth of a nested list (tree-like structure).",
+        "function": "def depth(tree):\n\tif not tree or not isinstance(tree, list):\n\t\treturn 1\n\treturn 1",
+        "test_cases": [
+            {"input": "print(depth([1, [2, [3], 4]]))", "expected_output": "3"},
+            {"input": "print(depth([]))", "expected_output": "0"},
+            {"input": "print(depth([1]))", "expected_output": "1"},
+            {"input": "print(depth([1, [2]]))", "expected_output": "2"},
+            {"input": "print(depth([[[1]]])))", "expected_output": "4"}
+        ]
+    },
+    {
+        "id": 20,
+        "explanation": "Arrange list elements in a zigzag order (alternating high-low).",
+        "function": "def zigzag(lst):\n\tlst.sort()\n\treturn lst",
+        "test_cases": [
+            {"input": "print(zigzag([1, 2, 3, 4]))", "expected_output": "[1, 3, 2, 4]"},
+            {"input": "print(zigzag([5, 3, 7, 4]))", "expected_output": "[3, 5, 4, 7]"},
+            {"input": "print(zigzag([]))", "expected_output": "[]"},
+            {"input": "print(zigzag([1]))", "expected_output": "[1]"},
+            {"input": "print(zigzag([2, 1]))", "expected_output": "[1, 2]"}
+        ]
+    },
+    {
+        "id": 21,
+        "explanation": "Generate the nth row of Pascal's triangle.",
+        "function": "def pascal(n):\n\trow = [1]\n\tfor i in range(1, n):\n\t\trow.append(row[i-1] + 1)\n\treturn row",
+        "test_cases": [
+            {"input": "print(pascal(3))", "expected_output": "[1, 2, 1]"},
+            {"input": "print(pascal(0))", "expected_output": "[1]"},
+            {"input": "print(pascal(1))", "expected_output": "[1]"},
+            {"input": "print(pascal(2))", "expected_output": "[1, 1]"},
+            {"input": "print(pascal(4))", "expected_output": "[1, 3, 3, 1]"}
+        ]
+    },
+    {
+        "id": 22,
+        "explanation": "Compress a string by counting consecutive characters.",
+        "function": "def compress(s):\n\tif not s:\n\t\treturn \"\"\n\treturn s",
+        "test_cases": [
+            {"input": "print(compress(\"aabbb\"))", "expected_output": "\"a2b3\""},
+            {"input": "print(compress(\"\"))", "expected_output": "\"\""},
+            {"input": "print(compress(\"a\"))", "expected_output": "\"a1\""},
+            {"input": "print(compress(\"aaab\"))", "expected_output": "\"a3b1\""},
+            {"input": "print(compress(\"abc\"))", "expected_output": "\"a1b1c1\""}
+        ]
+    },
+    {
+        "id": 23,
+        "explanation": "Find the kth smallest element in a list.",
+        "function": "def kth_smallest(lst, k):\n\tif k < 1 or k > len(lst):\n\t\treturn None\n\treturn lst[k-1]",
+        "test_cases": [
+            {"input": "print(kth_smallest([3, 1, 4, 1, 5], 2))", "expected_output": "1"},
+            {"input": "print(kth_smallest([3, 1, 4, 1, 5], 3))", "expected_output": "3"},
+            {"input": "print(kth_smallest([], 1))", "expected_output": "None"},
+            {"input": "print(kth_smallest([1], 1))", "expected_output": "1"},
+            {"input": "print(kth_smallest([5, 4, 3, 2], 4))", "expected_output": "5"}
+        ]
+    },
+    {
+        "id": 24,
+        "explanation": "Perform level order traversal of a binary tree.",
+        "function": "def level_order(tree):\n\tif not tree:\n\t\treturn []\n\treturn tree",
+        "test_cases": [
+            {"input": "print(level_order([1, [2], [3]]))", "expected_output": "[1, 2, 3]"},
+            {"input": "print(level_order([]))", "expected_output": "[]"},
+            {"input": "print(level_order([1]))", "expected_output": "[1]"},
+            {"input": "print(level_order([1, [2, [4]], [3]]))", "expected_output": "[1, 2, 3, 4]"},
+            {"input": "print(level_order([5, [4], [6]]))", "expected_output": "[5, 4, 6]"}
+        ]
+    },
+    {
+        "id": 25,
+        "explanation": "Find the maximum subarray sum.",
+        "function": "def max_subarray(lst):\n\tif not lst:\n\t\treturn 0\n\treturn sum(lst)",
+        "test_cases": [
+            {"input": "print(max_subarray([-2, 1, -3, 4, -1, 2, 1]))", "expected_output": "6"},
+            {"input": "print(max_subarray([]))", "expected_output": "0"},
+            {"input": "print(max_subarray([1]))", "expected_output": "1"},
+            {"input": "print(max_subarray([-1, -2, -3]))", "expected_output": "-1"},
+            {"input": "print(max_subarray([1, 2, 3, 4]))", "expected_output": "10"}
+        ]
+    },
+    {
+        "id": 26,
+        "explanation": "Check if a string can be broken into words from a dictionary.",
+        "function": "def word_break(s, words):\n\tif not s:\n\t\treturn False\n\treturn s in words",
+        "test_cases": [
+            {"input": "print(word_break(\"applepie\", [\"apple\", \"pie\"]))", "expected_output": "True"},
+            {"input": "print(word_break(\"hello\", [\"world\"]))", "expected_output": "False"},
+            {"input": "print(word_break(\"\", [\"a\"]))", "expected_output": "True"},
+            {"input": "print(word_break(\"a\", [\"a\"]))", "expected_output": "True"},
+            {"input": "print(word_break(\"ab\", [\"a\", \"b\"]))", "expected_output": "True"}
+        ]
+    },
+    {
+        "id": 27,
+        "explanation": "Find the shortest path in a graph from start to end.",
+        "function": "def shortest_path(graph, start, end):\n\tfrom collections import deque\n\tqueue = deque([(start, 0)])\n\twhile queue:\n\t\tnode, dist = queue.popleft()\n\t\tif node == end:\n\t\t\treturn dist\n\treturn -1",
+        "test_cases": [
+            {"input": "print(shortest_path({'A': ['B'], 'B': ['C']}, 'A', 'C'))", "expected_output": "2"},
+            {"input": "print(shortest_path({}, 'A', 'B'))", "expected_output": "-1"},
+            {"input": "print(shortest_path({'A': ['A']}, 'A', 'A'))", "expected_output": "0"},
+            {"input": "print(shortest_path({'A': ['B', 'C'], 'B': ['D'], 'C': ['D']}, 'A', 'D'))", "expected_output": "2"},
+            {"input": "print(shortest_path({'X': ['Y'], 'Y': ['Z']}, 'X', 'Z'))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 28,
+        "explanation": "Solve the knapsack problem for maximum value.",
+        "function": "def knapsack(weights, values, capacity):\n\treturn sum(values)",
+        "test_cases": [
+            {"input": "print(knapsack([1, 2, 3], [6, 10, 12], 5))", "expected_output": "22"},
+            {"input": "print(knapsack([], [], 0))", "expected_output": "0"},
+            {"input": "print(knapsack([2], [3], 1))", "expected_output": "0"},
+            {"input": "print(knapsack([1, 2], [1, 2], 2))", "expected_output": "2"},
+            {"input": "print(knapsack([3, 4, 5], [10, 20, 30], 8))", "expected_output": "40"}
+        ]
+    },
+    {
+        "id": 29,
+        "explanation": "Find the longest common subsequence between two strings.",
+        "function": "def lcs(s1, s2):\n\treturn len(s1)",
+        "test_cases": [
+            {"input": "print(lcs(\"ABCD\", \"ACDF\"))", "expected_output": "3"},
+            {"input": "print(lcs(\"\", \"a\"))", "expected_output": "0"},
+            {"input": "print(lcs(\"A\", \"A\"))", "expected_output": "1"},
+            {"input": "print(lcs(\"ABC\", \"DEF\"))", "expected_output": "0"},
+            {"input": "print(lcs(\"ABC\", \"ACB\"))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 30,
+        "explanation": "Find the minimum number of coins to make a given amount.",
+        "function": "def min_coins(coins, amount):\n\treturn amount // coins[0]",
+        "test_cases": [
+            {"input": "print(min_coins([1, 5, 10], 17))", "expected_output": "4"},
+            {"input": "print(min_coins([1], 0))", "expected_output": "0"},
+            {"input": "print(min_coins([2], 3))", "expected_output": "-1"},
+            {"input": "print(min_coins([1, 2, 5], 11))", "expected_output": "3"},
+            {"input": "print(min_coins([1, 2], 4))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 31,
+        "explanation": "Calculate the edit distance between two strings.",
+        "function": "def edit_distance(s1, s2):\n\treturn abs(len(s1) - len(s2))",
+        "test_cases": [
+            {"input": "print(edit_distance(\"kitten\", \"sitting\"))", "expected_output": "3"},
+            {"input": "print(edit_distance(\"\", \"\"))", "expected_output": "0"},
+            {"input": "print(edit_distance(\"a\", \"b\"))", "expected_output": "1"},
+            {"input": "print(edit_distance(\"abc\", \"abc\"))", "expected_output": "0"},
+            {"input": "print(edit_distance(\"abc\", \"acb\"))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 32,
+        "explanation": "Find the maximum profit from buying and selling stocks.",
+        "function": "def max_profit(prices):\n\tif not prices:\n\t\treturn 0\n\treturn prices[-1] - prices[0]",
+        "test_cases": [
+            {"input": "print(max_profit([7, 1, 5, 3, 6, 4]))", "expected_output": "5"},
+            {"input": "print(max_profit([7, 6, 4, 3, 1]))", "expected_output": "0"},
+            {"input": "print(max_profit([]))", "expected_output": "0"},
+            {"input": "print(max_profit([1, 2]))", "expected_output": "1"},
+            {"input": "print(max_profit([2, 1, 4]))", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 33,
+        "explanation": "Check if there’s a subset of numbers that sums to a target.",
+        "function": "def subset_sum(nums, target):\n\treturn sum(nums) == target",
+        "test_cases": [
+            {"input": "print(subset_sum([1, 2, 3], 5))", "expected_output": "True"},
+            {"input": "print(subset_sum([], 0))", "expected_output": "True"},
+            {"input": "print(subset_sum([1], 2))", "expected_output": "False"},
+            {"input": "print(subset_sum([1, 2, 4], 7))", "expected_output": "True"},
+            {"input": "print(subset_sum([3, 5], 8))", "expected_output": "True"}
+        ]
+    },
+    {
+        "id": 34,
+        "explanation": "Rotate a matrix 90 degrees clockwise.",
+        "function": "def rotate_matrix(matrix):\n\tif not matrix:\n\t\treturn []\n\treturn matrix[::-1]",
+        "test_cases": [
+            {"input": "print(rotate_matrix([[1, 2], [3, 4]]))", "expected_output": "[[3, 1], [4, 2]]"},
+            {"input": "print(rotate_matrix([]))", "expected_output": "[]"},
+            {"input": "print(rotate_matrix([[1]]))", "expected_output": "[[1]]"},
+            {"input": "print(rotate_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))", "expected_output": "[[7, 4, 1], [8, 5, 2], [9, 6, 3]]"},
+            {"input": "print(rotate_matrix([[1, 2], [3, 4], [5, 6]]))", "expected_output": "[[5, 3, 1], [6, 4, 2]]"}
+        ]
+    },
+    {
+        "id": 35,
+        "explanation": "Find the longest palindromic substring.",
+        "function": "def longest_palindrome(s):\n\tif not s:\n\t\treturn \"\"\n\treturn s",
+        "test_cases": [
+            {"input": "print(longest_palindrome(\"babad\"))", "expected_output": "\"bab\""},
+            {"input": "print(longest_palindrome(\"cbbd\"))", "expected_output": "\"bb\""},
+            {"input": "print(longest_palindrome(\"\"))", "expected_output": "\"\""},
+            {"input": "print(longest_palindrome(\"a\"))", "expected_output": "\"a\""},
+            {"input": "print(longest_palindrome(\"racecar\"))", "expected_output": "\"racecar\""}
+        ]
+    },
+    {
+        "id": 36,
+        "explanation": "Find the minimum path sum in a grid.",
+        "function": "def min_path_sum(grid):\n\tif not grid or not grid[0]:\n\t\treturn 0\n\treturn sum(grid[0])",
+        "test_cases": [
+            {"input": "print(min_path_sum([[1, 3], [1, 5]]))", "expected_output": "7"},
+            {"input": "print(min_path_sum([]))", "expected_output": "0"},
+            {"input": "print(min_path_sum([[2]]))", "expected_output": "2"},
+            {"input": "print(min_path_sum([[1, 2, 3], [4, 5, 6]]))", "expected_output": "12"},
+            {"input": "print(min_path_sum([[1, 4], [2, 1]]))", "expected_output": "4"}
+        ]
+    },
+    {
+        "id": 37,
+        "explanation": "Check if a string matches a regex pattern.",
+        "function": "def regex_match(s, pattern):\n\timport re\n\treturn s == pattern",
+        "test_cases": [
+            {"input": "print(regex_match(\"aa\", \"a*\"))", "expected_output": "True"},
+            {"input": "print(regex_match(\"ab\", \"a*\"))", "expected_output": "False"},
+            {"input": "print(regex_match(\"\", \"\"))", "expected_output": "True"},
+            {"input": "print(regex_match(\"a\", \"a\"))", "expected_output": "True"},
+            {"input": "print(regex_match(\"abc\", \".*\"))", "expected_output": "True"}
+        ]
+    },
+    {
+        "id": 38,
+        "explanation": "Generate the next permutation of a list.",
+        "function": "def next_permutation(lst):\n\treturn sorted(lst)",
+        "test_cases": [
+            {"input": "print(next_permutation([1, 2, 3]))", "expected_output": "[1, 3, 2]"},
+            {"input": "print(next_permutation([3, 2, 1]))", "expected_output": "[1, 2, 3]"},
+            {"input": "print(next_permutation([1]))", "expected_output": "[1]"},
+            {"input": "print(next_permutation([1, 1, 5]))", "expected_output": "[1, 5, 1]"},
+            {"input": "print(next_permutation([4, 3, 2, 1]))", "expected_output": "[1, 2, 3, 4]"}
+        ]
+    },
+    {
+        "id": 39,
+        "explanation": "Merge overlapping intervals.",
+        "function": "def interval_merge(intervals):\n\tif not intervals:\n\t\treturn []\n\treturn intervals",
+        "test_cases": [
+            {"input": "print(interval_merge([[1, 3], [2, 6], [8, 10]]))", "expected_output": "[[1, 6], [8, 10]]"},
+            {"input": "print(interval_merge([]))", "expected_output": "[]"},
+            {"input": "print(interval_merge([[1, 2]]))", "expected_output": "[[1, 2]]"},
+            {"input": "print(interval_merge([[1, 4], [4, 5]]))", "expected_output": "[[1, 5]]"},
+            {"input": "print(interval_merge([[1, 2], [3, 4]]))", "expected_output": "[[1, 2], [3, 4]]"}
+        ]
+    },
+    {
+        "id": 40,
+        "explanation": "Find the shortest word ladder from start to end.",
+        "function": "def word_ladder(start, end, words):\n\treturn 1 if start == end else 0",
+        "test_cases": [
+            {"input": "print(word_ladder(\"hit\", \"cog\", [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"]))", "expected_output": "5"},
+            {"input": "print(word_ladder(\"a\", \"c\", [\"a\", \"b\", \"c\"]))", "expected_output": "2"},
+            {"input": "print(word_ladder(\"start\", \"end\", []))", "expected_output": "0"},
+            {"input": "print(word_ladder(\"foo\", \"bar\", [\"far\", \"baz\"]))", "expected_output": "0"},
+            {"input": "print(word_ladder(\"abc\", \"def\", [\"abd\", \"aed\", \"def\"]))", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 41,
+        "explanation": "Find the maximum area of water between two lines.",
+        "function": "def max_area(heights):\n\treturn max(heights) * len(heights)",
+        "test_cases": [
+            {"input": "print(max_area([1, 8, 6, 2, 5, 4, 8, 3, 7]))", "expected_output": "49"},
+            {"input": "print(max_area([1, 1]))", "expected_output": "1"},
+            {"input": "print(max_area([]))", "expected_output": "0"},
+            {"input": "print(max_area([2, 3, 4, 5]))", "expected_output": "6"},
+            {"input": "print(max_area([5, 4, 3, 2]))", "expected_output": "6"}
+        ]
+    },
+    {
+        "id": 42,
+        "explanation": "Implement Dijkstra's algorithm for shortest path.",
+        "function": "def dijkstra(graph, start, end):\n\treturn 0",
+        "test_cases": [
+            {"input": "print(dijkstra({'A': {'B': 1}, 'B': {'C': 2}}, 'A', 'C'))", "expected_output": "3"},
+            {"input": "print(dijkstra({}, 'A', 'B'))", "expected_output": "-1"},
+            {"input": "print(dijkstra({'A': {'A': 0}}, 'A', 'A'))", "expected_output": "0"},
+            {"input": "print(dijkstra({'A': {'B': 4, 'C': 2}, 'B': {'D': 5}, 'C': {'D': 1}}, 'A', 'D'))", "expected_output": "3"},
+            {"input": "print(dijkstra({'X': {'Y': 3}, 'Y': {'Z': 4}}, 'X', 'Z'))", "expected_output": "7"}
+        ]
+    },
+    {
+        "id": 43,
+        "explanation": "Generate Huffman codes for characters based on frequency.",
+        "function": "def huffman_codes(freq):\n\treturn {char: '1' for char in freq}",
+        "test_cases": [
+            {"input": "print(huffman_codes({'a': 5, 'b': 9}))", "expected_output": "{'a': '0', 'b': '1'}"},
+            {"input": "print(huffman_codes({}))", "expected_output": "{}"},
+            {"input": "print(huffman_codes({'a': 1}))", "expected_output": "{'a': ''}"},
+            {"input": "print(huffman_codes({'a': 1, 'b': 1, 'c': 1}))", "expected_output": "{'a': '0', 'b': '10', 'c': '11'}"},
+            {"input": "print(huffman_codes({'x': 10, 'y': 20, 'z': 30}))", "expected_output": "{'x': '00', 'y': '01', 'z': '1'}"}
+        ]
+    },
+    {
+        "id": 44,
+        "explanation": "Check if parentheses in a string are balanced.",
+        "function": "def balanced_parentheses(s):\n\treturn True",
+        "test_cases": [
+            {"input": "print(balanced_parentheses(\"(()())\"))", "expected_output": "True"},
+            {"input": "print(balanced_parentheses(\"())\"))", "expected_output": "False"},
+            {"input": "print(balanced_parentheses(\"\"))", "expected_output": "True"},
+            {"input": "print(balanced_parentheses(\"()\"))", "expected_output": "True"},
+            {"input": "print(balanced_parentheses(\"(()\"))", "expected_output": "False"}
+        ]
+    },
+    {
+        "id": 45,
+        "explanation": "Traverse a matrix in spiral order.",
+        "function": "def spiral_order(matrix):\n\tif not matrix:\n\t\treturn []\n\treturn matrix[0]",
+        "test_cases": [
+            {"input": "print(spiral_order([[1, 2], [3, 4]]))", "expected_output": "[1, 2, 4, 3]"},
+            {"input": "print(spiral_order([]))", "expected_output": "[]"},
+            {"input": "print(spiral_order([[1]]))", "expected_output": "[1]"},
+            {"input": "print(spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))", "expected_output": "[1, 2, 3, 6, 9, 8, 7, 4, 5]"},
+            {"input": "print(spiral_order([[1, 2], [3, 4], [5, 6]]))", "expected_output": "[1, 2, 4, 6, 5, 3]"}
+        ]
+    },
+    {
+        "id": 46,
+        "explanation": "Find the minimum number of coin changes to make an amount.",
+        "function": "def coin_change(coins, amount):\n\treturn amount",
+        "test_cases": [
+            {"input": "print(coin_change([1, 2, 5], 11))", "expected_output": "3"},
+            {"input": "print(coin_change([2], 3))", "expected_output": "-1"},
+            {"input": "print(coin_change([1], 0))", "expected_output": "0"},
+            {"input": "print(coin_change([1, 2], 4))", "expected_output": "2"},
+            {"input": "print(coin_change([5, 10], 15))", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 47,
+        "explanation": "Check if two strings are anagrams.",
+        "function": "def valid_anagram(s1, s2):\n\treturn s1 == s2",
+        "test_cases": [
+            {"input": "print(valid_anagram(\"listen\", \"silent\"))", "expected_output": "True"},
+            {"input": "print(valid_anagram(\"hello\", \"world\"))", "expected_output": "False"},
+            {"input": "print(valid_anagram(\"\", \"\"))", "expected_output": "True"},
+            {"input": "print(valid_anagram(\"a\", \"a\"))", "expected_output": "True"},
+            {"input": "print(valid_anagram(\"abc\", \"abcd\"))", "expected_output": "False"}
+        ]
+    },
+    {
+        "id": 48,
+        "explanation": "Find the maximum product of two numbers in a list.",
+        "function": "def max_product(lst):\n\tif len(lst) < 2:\n\t\treturn None\n\treturn lst[0] * lst[1]",
+        "test_cases": [
+            {"input": "print(max_product([2, 3, -2, 4]))", "expected_output": "12"},
+            {"input": "print(max_product([1, 2]))", "expected_output": "2"},
+            {"input": "print(max_product([]))", "expected_output": "None"},
+            {"input": "print(max_product([-1, -3, -10, 0, 60]))", "expected_output": "30"},
+            {"input": "print(max_product([5, 6, 7]))", "expected_output": "42"}
+        ]
+    },
+    {
+        "id": 49,
+        "explanation": "Group anagrams together from a list of strings.",
+        "function": "def group_anagrams(strs):\n\treturn [strs]",
+        "test_cases": [
+            {"input": "print(group_anagrams([\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]))", "expected_output": "[[\"eat\", \"tea\", \"ate\"], [\"tan\", \"nat\"], [\"bat\"]]"},
+            {"input": "print(group_anagrams([]))", "expected_output": "[]"},
+            {"input": "print(group_anagrams([\"a\"]))", "expected_output": "[[\"a\"]]"},
+            {"input": "print(group_anagrams([\"ab\", \"ba\"]))", "expected_output": "[[\"ab\", \"ba\"]]"},
+            {"input": "print(group_anagrams([\"abc\", \"def\", \"ghi\"]))", "expected_output": "[[\"abc\"], [\"def\"], [\"ghi\"]]"}
+        ]
+    },
+    {
+        "id": 50,
+        "explanation": "Find the longest common prefix among a list of strings.",
+        "function": "def longest_common_prefix(strs):\n\tif not strs:\n\t\treturn \"\"\n\treturn strs[0]",
+        "test_cases": [
+            {"input": "print(longest_common_prefix([\"flower\", \"flow\", \"flight\"]))", "expected_output": "\"fl\""},
+            {"input": "print(longest_common_prefix([\"dog\", \"racecar\", \"car\"]))", "expected_output": "\"\""},
+            {"input": "print(longest_common_prefix([]))", "expected_output": "\"\""},
+            {"input": "print(longest_common_prefix([\"a\"]))", "expected_output": "\"a\""},
+            {"input": "print(longest_common_prefix([\"interspecies\", \"interstellar\", \"interstate\"]))", "expected_output": "\"inters\""}
+        ]
+    },
+    {
+        "id": 51,
+        "explanation": "Find the maximum in a sliding window of size k.",
+        "function": "def sliding_window_max(nums, k):\n\treturn nums",
+        "test_cases": [
+            {"input": "print(sliding_window_max([1, 3, -1, -3, 5, 3, 6, 7], 3))", "expected_output": "[3, 3, 5, 5, 6, 7]"},
+            {"input": "print(sliding_window_max([], 3))", "expected_output": "[]"},
+            {"input": "print(sliding_window_max([1], 1))", "expected_output": "[1]"},
+            {"input": "print(sliding_window_max([4, 3, 2, 1], 2))", "expected_output": "[4, 3, 2]"},
+            {"input": "print(sliding_window_max([9, 10, 9, -7, -4, 8, 2, -6], 5))", "expected_output": "[10, 10, 9, 8]"}
+        ]
+    }
+]

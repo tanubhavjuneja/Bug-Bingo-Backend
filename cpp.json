@@ -1,0 +1,566 @@
+[
+    {
+        "id": 1,
+        "explanation": "Calculate the factorial of a non-negative integer using recursion.",
+        "function": "#include <iostream>\nusing namespace std;\n\nlong long factorial(int n) {\n    if (n <= 1) return 1;\n    return n * factorial(n - 1);\n}\n\nint main() {\n    int n;\n    cin >> n;\n    cout << factorial(n) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "0", "expected_output": "1"},
+            {"input": "1", "expected_output": "1"},
+            {"input": "5", "expected_output": "120"},
+            {"input": "3", "expected_output": "6"},
+            {"input": "7", "expected_output": "5040"}
+        ]
+    },
+    {
+        "id": 2,
+        "explanation": "Reverse a vector in place using two pointers.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvoid reverse_vector(vector<int>& vec) {\n    int left = 0, right = vec.size() - 1;\n    while (left < right) {\n        swap(vec[left], vec[right]);\n        left++;\n        right--;\n    }\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    reverse_vector(vec);\n    for (int num : vec) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3\n1 2 3", "expected_output": "3 2 1"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n5", "expected_output": "5"},
+            {"input": "4\n4 3 2 1", "expected_output": "1 2 3 4"},
+            {"input": "2\n10 20", "expected_output": "20 10"}
+        ]
+    },
+    {
+        "id": 3,
+        "explanation": "Calculate the sum of pairs of consecutive elements in a vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint sum_pairs(vector<int> vec) {\n    int total = 0;\n    for (int i = 0; i < vec.size() - 1; i++) {\n        total += vec[i] + vec[i + 1];\n    }\n    return total;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << sum_pairs(vec) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "4\n1 2 3 4", "expected_output": "10"},
+            {"input": "2\n5 5", "expected_output": "10"},
+            {"input": "3\n0 1 2", "expected_output": "3"},
+            {"input": "1\n1", "expected_output": "0"},
+            {"input": "5\n1 2 3 4 5", "expected_output": "20"}
+        ]
+    },
+    {
+        "id": 4,
+        "explanation": "Compute the nth Fibonacci number using recursion (F(0)=0, F(1)=1).",
+        "function": "#include <iostream>\nusing namespace std;\n\nint fibonacci(int n) {\n    if (n <= 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nint main() {\n    int n;\n    cin >> n;\n    cout << fibonacci(n) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "0", "expected_output": "0"},
+            {"input": "1", "expected_output": "1"},
+            {"input": "6", "expected_output": "8"},
+            {"input": "4", "expected_output": "3"},
+            {"input": "5", "expected_output": "5"}
+        ]
+    },
+    {
+        "id": 5,
+        "explanation": "Find the maximum value in a vector using iteration.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint find_max(vector<int> vec) {\n    if (vec.empty()) return -1;\n    int max_val = vec[0];\n    for (int num : vec) {\n        if (num > max_val) max_val = num;\n    }\n    return max_val;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << find_max(vec) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5\n3 1 4 1 5", "expected_output": "5"},
+            {"input": "0", "expected_output": "-1"},
+            {"input": "1\n10", "expected_output": "10"},
+            {"input": "3\n7 2 8", "expected_output": "8"},
+            {"input": "3\n-1 -2 -3", "expected_output": "-1"}
+        ]
+    },
+    {
+        "id": 6,
+        "explanation": "Flatten a vector of vectors into a single vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> flatten(vector<vector<int>> vec) {\n    vector<int> result;\n    for (auto subvec : vec) {\n        for (int num : subvec) {\n            result.push_back(num);\n        }\n    }\n    return result;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<vector<int>> vec(n);\n    for (int i = 0; i < n; i++) {\n        int m;\n        cin >> m;\n        vec[i].resize(m);\n        for (int j = 0; j < m; j++) cin >> vec[i][j];\n    }\n    vector<int> flat = flatten(vec);\n    for (int num : flat) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2\n2 1 2\n2 3 4", "expected_output": "1 2 3 4"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1 5", "expected_output": "5"},
+            {"input": "3\n1 1\n1 2\n1 3", "expected_output": "1 2 3"},
+            {"input": "2\n3 5 6 7\n1 8", "expected_output": "5 6 7 8"}
+        ]
+    },
+    {
+        "id": 7,
+        "explanation": "Perform binary search to find the index of a target in a sorted vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint binary_search(vector<int> vec, int target) {\n    int left = 0, right = vec.size() - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (vec[mid] == target) return mid;\n        if (vec[mid] < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}\n\nint main() {\n    int n, target;\n    cin >> n >> target;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << binary_search(vec, target) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5 3\n1 2 3 4 5", "expected_output": "2"},
+            {"input": "5 6\n1 2 3 4 5", "expected_output": "-1"},
+            {"input": "0 1", "expected_output": "-1"},
+            {"input": "1 1\n1", "expected_output": "0"},
+            {"input": "5 5\n1 3 5 7 9", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 8,
+        "explanation": "Merge two vectors and sort the result.",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<int> merge_vectors(vector<int> vec1, vector<int> vec2) {\n    vector<int> result = vec1;\n    result.insert(result.end(), vec2.begin(), vec2.end());\n    sort(result.begin(), result.end());\n    return result;\n}\n\nint main() {\n    int n1, n2;\n    cin >> n1;\n    vector<int> vec1(n1);\n    for (int i = 0; i < n1; i++) cin >> vec1[i];\n    cin >> n2;\n    vector<int> vec2(n2);\n    for (int i = 0; i < n2; i++) cin >> vec2[i];\n    vector<int> merged = merge_vectors(vec1, vec2);\n    for (int num : merged) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2\n1 3\n2\n2 4", "expected_output": "1 2 3 4"},
+            {"input": "0\n0", "expected_output": ""},
+            {"input": "1\n1\n1\n2", "expected_output": "1 2"},
+            {"input": "2\n5 1\n0", "expected_output": "1 5"},
+            {"input": "2\n4 5\n2\n1 2", "expected_output": "1 2 4 5"}
+        ]
+    },
+    {
+        "id": 9,
+        "explanation": "Calculate base raised to exponent using recursion.",
+        "function": "#include <iostream>\nusing namespace std;\n\nlong long power(int base, int exp) {\n    if (exp == 0) return 1;\n    return base * power(base, exp - 1);\n}\n\nint main() {\n    int base, exp;\n    cin >> base >> exp;\n    cout << power(base, exp) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2 3", "expected_output": "8"},
+            {"input": "5 0", "expected_output": "1"},
+            {"input": "3 2", "expected_output": "9"},
+            {"input": "2 4", "expected_output": "16"},
+            {"input": "10 2", "expected_output": "100"}
+        ]
+    },
+    {
+        "id": 10,
+        "explanation": "Return a vector of unique elements from the input vector.",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<int> unique_elements(vector<int> vec) {\n    sort(vec.begin(), vec.end());\n    vec.erase(unique(vec.begin(), vec.end()), vec.end());\n    return vec;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    vector<int> result = unique_elements(vec);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5\n1 2 2 3 1", "expected_output": "1 2 3"},
+            {"input": "0", "expected_output": ""},
+            {"input": "3\n1 1 1", "expected_output": "1"},
+            {"input": "3\n3 2 1", "expected_output": "1 2 3"},
+            {"input": "4\n4 5 4 5", "expected_output": "4 5"}
+        ]
+    },
+    {
+        "id": 11,
+        "explanation": "Rotate a vector by moving the first element to the end.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> rotate_vector(vector<int> vec) {\n    if (vec.empty()) return vec;\n    int first = vec[0];\n    for (int i = 0; i < vec.size() - 1; i++) {\n        vec[i] = vec[i + 1];\n    }\n    vec[vec.size() - 1] = first;\n    return vec;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    vector<int> result = rotate_vector(vec);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "4\n1 2 3 4", "expected_output": "2 3 4 1"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "2\n1 2", "expected_output": "2 1"},
+            {"input": "3\n5 6 7", "expected_output": "6 7 5"}
+        ]
+    },
+    {
+        "id": 12,
+        "explanation": "Calculate the sum of all elements in a 2D vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint matrix_sum(vector<vector<int>> matrix) {\n    int total = 0;\n    for (auto row : matrix) {\n        for (int num : row) {\n            total += num;\n        }\n    }\n    return total;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<vector<int>> matrix(n);\n    for (int i = 0; i < n; i++) {\n        int m;\n        cin >> m;\n        matrix[i].resize(m);\n        for (int j = 0; j < m; j++) cin >> matrix[i][j];\n    }\n    cout << matrix_sum(matrix) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2\n2 1 2\n2 3 4", "expected_output": "10"},
+            {"input": "0", "expected_output": "0"},
+            {"input": "1\n1 5", "expected_output": "5"},
+            {"input": "2\n2 1 1\n2 1 1", "expected_output": "4"},
+            {"input": "2\n2 0 0\n2 0 0", "expected_output": "0"}
+        ]
+    },
+    {
+        "id": 13,
+        "explanation": "Check if a string is a palindrome using two pointers.",
+        "function": "#include <iostream>\n#include <string>\nusing namespace std;\n\nbool is_palindrome(string s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n        if (s[left++] != s[right--]) return false;\n    }\n    return true;\n}\n\nint main() {\n    string s;\n    cin >> s;\n    cout << boolalpha << is_palindrome(s) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "racecar", "expected_output": "true"},
+            {"input": "hello", "expected_output": "false"},
+            {"input": "", "expected_output": "true"},
+            {"input": "a", "expected_output": "true"},
+            {"input": "ab", "expected_output": "false"}
+        ]
+    },
+    {
+        "id": 14,
+        "explanation": "Partition a vector into subvectors of size n.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<vector<int>> partition(vector<int> vec, int n) {\n    vector<vector<int>> result;\n    for (int i = 0; i < vec.size(); i += n) {\n        vector<int> subvec;\n        for (int j = i; j < min(i + n, (int)vec.size()); j++) {\n            subvec.push_back(vec[j]);\n        }\n        result.push_back(subvec);\n    }\n    return result;\n}\n\nint main() {\n    int n, size;\n    cin >> size >> n;\n    vector<int> vec(size);\n    for (int i = 0; i < size; i++) cin >> vec[i];\n    vector<vector<int>> result = partition(vec, n);\n    for (auto subvec : result) {\n        for (int num : subvec) cout << num << \" \";\n        cout << \"| \";\n    }\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5 2\n1 2 3 4 5", "expected_output": "1 2 | 3 4 | 5 |"},
+            {"input": "3 1\n1 2 3", "expected_output": "1 | 2 | 3 |"},
+            {"input": "0 3", "expected_output": ""},
+            {"input": "2 2\n1 2", "expected_output": "1 2 |"},
+            {"input": "4 3\n1 2 3 4", "expected_output": "1 2 3 | 4 |"}
+        ]
+    },
+    {
+        "id": 15,
+        "explanation": "Compute the GCD of two numbers using the Euclidean algorithm.",
+        "function": "#include <iostream>\nusing namespace std;\n\nint gcd(int a, int b) {\n    while (b) {\n        a %= b;\n        swap(a, b);\n    }\n    return a;\n}\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << gcd(a, b) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "48 18", "expected_output": "6"},
+            {"input": "0 5", "expected_output": "5"},
+            {"input": "7 0", "expected_output": "7"},
+            {"input": "14 21", "expected_output": "7"},
+            {"input": "100 80", "expected_output": "20"}
+        ]
+    },
+    {
+        "id": 16,
+        "explanation": "Count the length of the longest increasing subsequence in a vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint longest_increasing(vector<int> vec) {\n    if (vec.empty()) return 0;\n    int max_len = 1, curr_len = 1;\n    for (int i = 1; i < vec.size(); i++) {\n        if (vec[i] > vec[i - 1]) curr_len++;\n        else curr_len = 1;\n        max_len = max(max_len, curr_len);\n    }\n    return max_len;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << longest_increasing(vec) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5\n1 2 1 3 4", "expected_output": "3"},
+            {"input": "4\n1 3 5 7", "expected_output": "4"},
+            {"input": "4\n5 4 3 2", "expected_output": "1"},
+            {"input": "0", "expected_output": "0"},
+            {"input": "1\n2", "expected_output": "1"}
+        ]
+    },
+    {
+        "id": 17,
+        "explanation": "Count the frequency of each character in a string.",
+        "function": "#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nmap<char, int> count_chars(string s) {\n    map<char, int> freq;\n    for (char c : s) freq[c]++;\n    return freq;\n}\n\nint main() {\n    string s;\n    cin >> s;\n    map<char, int> result = count_chars(s);\n    for (auto pair : result) cout << pair.first << \":\" << pair.second << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "hello", "expected_output": "e:1 h:1 l:2 o:1"},
+            {"input": "", "expected_output": ""},
+            {"input": "a", "expected_output": "a:1"},
+            {"input": "aaab", "expected_output": "a:3 b:1"},
+            {"input": "abc", "expected_output": "a:1 b:1 c:1"}
+        ]
+    },
+    {
+        "id": 18,
+        "explanation": "Generate all permutations of a string using recursion.",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<string> permutations(string s) {\n    vector<string> result;\n    sort(s.begin(), s.end());\n    do {\n        result.push_back(s);\n    } while (next_permutation(s.begin(), s.end()));\n    return result;\n}\n\nint main() {\n    string s;\n    cin >> s;\n    vector<string> result = permutations(s);\n    for (string perm : result) cout << perm << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "abc", "expected_output": "abc acb bac bca cab cba"},
+            {"input": "", "expected_output": ""},
+            {"input": "a", "expected_output": "a"},
+            {"input": "ab", "expected_output": "ab ba"},
+            {"input": "12", "expected_output": "12 21"}
+        ]
+    },
+    {
+        "id": 19,
+        "explanation": "Find the depth of a nested vector structure.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\ntypedef vector<any> Tree;\n\nint depth(Tree tree) {\n    if (tree.empty()) return 0;\n    int max_depth = 1;\n    for (auto item : tree) {\n        if (item.type() == typeid(Tree)) {\n            max_depth = max(max_depth, 1 + depth(any_cast<Tree>(item)));\n        }\n    }\n    return max_depth;\n}\n\nint main() {\n    // Simplified input for demonstration (manual nested structure)\n    Tree t1 = {1, Tree{2, Tree{3}}, 4};\n    cout << depth(t1) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "[1, [2, [3]], 4]", "expected_output": "3"},
+            {"input": "[]", "expected_output": "0"},
+            {"input": "[1]", "expected_output": "1"},
+            {"input": "[1, [2]]", "expected_output": "2"},
+            {"input": "[[[1]]]", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 20,
+        "explanation": "Arrange vector elements in a zigzag order (alternating high-low).",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<int> zigzag(vector<int> vec) {\n    sort(vec.begin(), vec.end());\n    for (int i = 1; i < vec.size() - 1; i += 2) {\n        swap(vec[i], vec[i + 1]);\n    }\n    return vec;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    vector<int> result = zigzag(vec);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "4\n1 2 3 4", "expected_output": "1 3 2 4"},
+            {"input": "4\n5 3 7 4", "expected_output": "3 7 4 5"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "2\n2 1", "expected_output": "1 2"}
+        ]
+    },
+    {
+        "id": 21,
+        "explanation": "Generate the nth row of Pascal's triangle.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> pascal(int n) {\n    vector<int> row(n + 1, 1);\n    for (int i = 2; i <= n; i++) {\n        for (int j = i - 1; j > 0; j--) {\n            row[j] = row[j] + row[j - 1];\n        }\n    }\n    return row;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> result = pascal(n);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3", "expected_output": "1 3 3 1"},
+            {"input": "0", "expected_output": "1"},
+            {"input": "1", "expected_output": "1 1"},
+            {"input": "2", "expected_output": "1 2 1"},
+            {"input": "4", "expected_output": "1 4 6 4 1"}
+        ]
+    },
+    {
+        "id": 22,
+        "explanation": "Compress a string by counting consecutive characters.",
+        "function": "#include <iostream>\n#include <string>\nusing namespace std;\n\nstring compress(string s) {\n    if (s.empty()) return \"\";\n    string result;\n    int count = 1;\n    for (int i = 1; i <= s.length(); i++) {\n        if (i < s.length() && s[i] == s[i - 1]) count++;\n        else {\n            result += s[i - 1] + to_string(count);\n            count = 1;\n        }\n    }\n    return result;\n}\n\nint main() {\n    string s;\n    cin >> s;\n    cout << compress(s) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "aabbb", "expected_output": "a2b3"},
+            {"input": "", "expected_output": ""},
+            {"input": "a", "expected_output": "a1"},
+            {"input": "aaab", "expected_output": "a3b1"},
+            {"input": "abc", "expected_output": "a1b1c1"}
+        ]
+    },
+    {
+        "id": 23,
+        "explanation": "Find the kth smallest element in a vector.",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint kth_smallest(vector<int> vec, int k) {\n    if (k < 1 || k > vec.size()) return -1;\n    sort(vec.begin(), vec.end());\n    return vec[k - 1];\n}\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << kth_smallest(vec, k) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "5 2\n3 1 4 1 5", "expected_output": "1"},
+            {"input": "5 3\n3 1 4 1 5", "expected_output": "3"},
+            {"input": "0 1", "expected_output": "-1"},
+            {"input": "1 1\n1", "expected_output": "1"},
+            {"input": "4 4\n5 4 3 2", "expected_output": "5"}
+        ]
+    },
+    {
+        "id": 24,
+        "explanation": "Perform level-order traversal on a simple binary tree represented as a vector.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> level_order(vector<int> tree) {\n    return tree;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> tree(n);\n    for (int i = 0; i < n; i++) cin >> tree[i];\n    vector<int> result = level_order(tree);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3\n1 2 3", "expected_output": "1 2 3"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "4\n1 2 3 4", "expected_output": "1 2 3 4"},
+            {"input": "3\n5 4 6", "expected_output": "5 4 6"}
+        ]
+    },
+    {
+        "id": 25,
+        "explanation": "Find the maximum subarray sum using Kadane's algorithm.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint max_subarray(vector<int> vec) {\n    if (vec.empty()) return 0;\n    int max_so_far = vec[0], curr_max = vec[0];\n    for (int i = 1; i < vec.size(); i++) {\n        curr_max = max(vec[i], curr_max + vec[i]);\n        max_so_far = max(max_so_far, curr_max);\n    }\n    return max_so_far;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    cout << max_subarray(vec) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "7\n-2 1 -3 4 -1 2 1", "expected_output": "6"},
+            {"input": "0", "expected_output": "0"},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "3\n-1 -2 -3", "expected_output": "-1"},
+            {"input": "4\n1 2 3 4", "expected_output": "10"}
+        ]
+    },
+    {
+        "id": 26,
+        "explanation": "Check if a string can be segmented into words from a dictionary.",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nbool word_break(string s, vector<string> words) {\n    vector<bool> dp(s.length() + 1, false);\n    dp[0] = true;\n    for (int i = 1; i <= s.length(); i++) {\n        for (string word : words) {\n            if (i >= word.length() && dp[i - word.length()] && s.substr(i - word.length(), word.length()) == word) {\n                dp[i] = true;\n                break;\n            }\n        }\n    }\n    return dp[s.length()];\n}\n\nint main() {\n    string s;\n    int n;\n    cin >> s >> n;\n    vector<string> words(n);\n    for (int i = 0; i < n; i++) cin >> words[i];\n    cout << boolalpha << word_break(s, words) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "applepie 2\napple pie", "expected_output": "true"},
+            {"input": "hello 1\nworld", "expected_output": "false"},
+            {"input": " 1\na", "expected_output": "true"},
+            {"input": "a 1\na", "expected_output": "true"},
+            {"input": "ab 2\na b", "expected_output": "true"}
+        ]
+    },
+    {
+        "id": 27,
+        "explanation": "Find the shortest path length in an adjacency list graph using BFS.",
+        "function": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <map>\nusing namespace std;\n\nint shortest_path(map<char, vector<char>> graph, char start, char end) {\n    if (start == end) return 0;\n    queue<pair<char, int>> q;\n    vector<char> visited;\n    q.push({start, 0});\n    visited.push_back(start);\n    while (!q.empty()) {\n        char node = q.front().first;\n        int dist = q.front().second;\n        q.pop();\n        for (char neighbor : graph[node]) {\n            if (find(visited.begin(), visited.end(), neighbor) == visited.end()) {\n                if (neighbor == end) return dist + 1;\n                q.push({neighbor, dist + 1});\n                visited.push_back(neighbor);\n            }\n        }\n    }\n    return -1;\n}\n\nint main() {\n    int n;\n    char start, end;\n    cin >> n >> start >> end;\n    map<char, vector<char>> graph;\n    for (int i = 0; i < n; i++) {\n        char u, v;\n        cin >> u >> v;\n        graph[u].push_back(v);\n    }\n    cout << shortest_path(graph, start, end) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2 A C\nA B\nB C", "expected_output": "2"},
+            {"input": "0 A B", "expected_output": "-1"},
+            {"input": "1 A A\nA A", "expected_output": "0"},
+            {"input": "3 A D\nA B\nB D\nA C", "expected_output": "2"},
+            {"input": "2 X Z\nX Y\nY Z", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 28,
+        "explanation": "Solve the 0/1 knapsack problem for maximum value.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint knapsack(vector<int> weights, vector<int> values, int capacity) {\n    int n = weights.size();\n    vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));\n    for (int i = 1; i <= n; i++) {\n        for (int w = 0; w <= capacity; w++) {\n            if (weights[i - 1] <= w) {\n                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]);\n            } else {\n                dp[i][w] = dp[i - 1][w];\n            }\n        }\n    }\n    return dp[n][capacity];\n}\n\nint main() {\n    int n, capacity;\n    cin >> n >> capacity;\n    vector<int> weights(n), values(n);\n    for (int i = 0; i < n; i++) cin >> weights[i];\n    for (int i = 0; i < n; i++) cin >> values[i];\n    cout << knapsack(weights, values, capacity) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3 5\n1 2 3\n6 10 12", "expected_output": "28"},
+            {"input": "0 0", "expected_output": "0"},
+            {"input": "1 1\n2\n3", "expected_output": "0"},
+            {"input": "2 2\n1 2\n1 2", "expected_output": "2"},
+            {"input": "3 8\n3 4 5\n10 20 30", "expected_output": "50"}
+        ]
+    },
+    {
+        "id": 29,
+        "explanation": "Find the length of the longest common subsequence between two strings.",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint lcs(string s1, string s2) {\n    int m = s1.length(), n = s2.length();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));\n    for (int i = 1; i <= m; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (s1[i - 1] == s2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;\n            else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);\n        }\n    }\n    return dp[m][n];\n}\n\nint main() {\n    string s1, s2;\n    cin >> s1 >> s2;\n    cout << lcs(s1, s2) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "ABCD ACDF", "expected_output": "3"},
+            {"input": " a", "expected_output": "0"},
+            {"input": "A A", "expected_output": "1"},
+            {"input": "ABC DEF", "expected_output": "0"},
+            {"input": "ABC ACB", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 30,
+        "explanation": "Find the minimum number of coins to make an amount.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint min_coins(vector<int> coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int i = 1; i <= amount; i++) {\n        for (int coin : coins) {\n            if (coin <= i) dp[i] = min(dp[i], dp[i - coin] + 1);\n        }\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}\n\nint main() {\n    int n, amount;\n    cin >> n >> amount;\n    vector<int> coins(n);\n    for (int i = 0; i < n; i++) cin >> coins[i];\n    cout << min_coins(coins, amount) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3 17\n1 5 10", "expected_output": "4"},
+            {"input": "1 0\n1", "expected_output": "0"},
+            {"input": "1 3\n2", "expected_output": "-1"},
+            {"input": "3 11\n1 2 5", "expected_output": "3"},
+            {"input": "2 4\n1 2", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 31,
+        "explanation": "Calculate the edit distance between two strings.",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint edit_distance(string s1, string s2) {\n    int m = s1.length(), n = s2.length();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1));\n    for (int i = 0; i <= m; i++) dp[i][0] = i;\n    for (int j = 0; j <= n; j++) dp[0][j] = j;\n    for (int i = 1; i <= m; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (s1[i - 1] == s2[j - 1]) dp[i][j] = dp[i - 1][j - 1];\n            else dp[i][j] = min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1])) + 1;\n        }\n    }\n    return dp[m][n];\n}\n\nint main() {\n    string s1, s2;\n    cin >> s1 >> s2;\n    cout << edit_distance(s1, s2) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "kitten sitting", "expected_output": "3"},
+            {"input": "  ", "expected_output": "0"},
+            {"input": "a b", "expected_output": "1"},
+            {"input": "abc abc", "expected_output": "0"},
+            {"input": "abc acb", "expected_output": "2"}
+        ]
+    },
+    {
+        "id": 32,
+        "explanation": "Find the maximum profit from buying and selling stocks once.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint max_profit(vector<int> prices) {\n    if (prices.size() < 2) return 0;\n    int min_price = prices[0], max_profit = 0;\n    for (int i = 1; i < prices.size(); i++) {\n        if (prices[i] < min_price) min_price = prices[i];\n        else max_profit = max(max_profit, prices[i] - min_price);\n    }\n    return max_profit;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> prices(n);\n    for (int i = 0; i < n; i++) cin >> prices[i];\n    cout << max_profit(prices) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "6\n7 1 5 3 6 4", "expected_output": "5"},
+            {"input": "5\n7 6 4 3 1", "expected_output": "0"},
+            {"input": "0", "expected_output": "0"},
+            {"input": "2\n1 2", "expected_output": "1"},
+            {"input": "3\n2 1 4", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 33,
+        "explanation": "Check if a subset of a vector sums to a target value.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nbool subset_sum(vector<int> nums, int target) {\n    int n = nums.size();\n    vector<vector<bool>> dp(n + 1, vector<bool>(target + 1, false));\n    for (int i = 0; i <= n; i++) dp[i][0] = true;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= target; j++) {\n            if (nums[i - 1] <= j) dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];\n            else dp[i][j] = dp[i - 1][j];\n        }\n    }\n    return dp[n][target];\n}\n\nint main() {\n    int n, target;\n    cin >> n >> target;\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) cin >> nums[i];\n    cout << boolalpha << subset_sum(nums, target) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3 5\n1 2 3", "expected_output": "true"},
+            {"input": "0 0", "expected_output": "true"},
+            {"input": "1 2\n1", "expected_output": "false"},
+            {"input": "3 7\n1 2 4", "expected_output": "true"},
+            {"input": "2 8\n3 5", "expected_output": "true"}
+        ]
+    },
+    {
+        "id": 34,
+        "explanation": "Rotate a 2D vector (matrix) 90 degrees clockwise.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<vector<int>> rotate_matrix(vector<vector<int>> matrix) {\n    int n = matrix.size();\n    if (n == 0) return matrix;\n    vector<vector<int>> result(n, vector<int>(n));\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            result[j][n - 1 - i] = matrix[i][j];\n        }\n    }\n    return result;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<vector<int>> matrix(n, vector<int>(n));\n    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) cin >> matrix[i][j];\n    vector<vector<int>> result = rotate_matrix(matrix);\n    for (auto row : result) {\n        for (int num : row) cout << num << \" \";\n        cout << endl;\n    }\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2\n1 2\n3 4", "expected_output": "3 1\n4 2"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "3\n1 2 3\n4 5 6\n7 8 9", "expected_output": "7 4 1\n8 5 2\n9 6 3"},
+            {"input": "2\n5 6\n7 8", "expected_output": "7 5\n8 6"}
+        ]
+    },
+    {
+        "id": 35,
+        "explanation": "Find the longest palindromic substring in a string.",
+        "function": "#include <iostream>\n#include <string>\nusing namespace std;\n\nstring longest_palindrome(string s) {\n    int n = s.length(), start = 0, max_len = 1;\n    vector<vector<bool>> dp(n, vector<bool>(n, false));\n    for (int i = 0; i < n; i++) dp[i][i] = true;\n    for (int i = 0; i < n - 1; i++) {\n        if (s[i] == s[i + 1]) {\n            dp[i][i + 1] = true;\n            start = i;\n            max_len = 2;\n        }\n    }\n    for (int len = 3; len <= n; len++) {\n        for (int i = 0; i <= n - len; i++) {\n            int j = i + len - 1;\n            if (s[i] == s[j] && dp[i + 1][j - 1]) {\n                dp[i][j] = true;\n                start = i;\n                max_len = len;\n            }\n        }\n    }\n    return s.substr(start, max_len);\n}\n\nint main() {\n    string s;\n    cin >> s;\n    cout << longest_palindrome(s) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "babad", "expected_output": "bab"},
+            {"input": "cbbd", "expected_output": "bb"},
+            {"input": "", "expected_output": ""},
+            {"input": "a", "expected_output": "a"},
+            {"input": "racecar", "expected_output": "racecar"}
+        ]
+    },
+    {
+        "id": 36,
+        "explanation": "Find the minimum path sum in a grid from top-left to bottom-right.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint min_path_sum(vector<vector<int>> grid) {\n    if (grid.empty() || grid[0].empty()) return 0;\n    int m = grid.size(), n = grid[0].size();\n    vector<vector<int>> dp(m, vector<int>(n));\n    dp[0][0] = grid[0][0];\n    for (int i = 1; i < m; i++) dp[i][0] = dp[i - 1][0] + grid[i][0];\n    for (int j = 1; j < n; j++) dp[0][j] = dp[0][j - 1] + grid[0][j];\n    for (int i = 1; i < m; i++) {\n        for (int j = 1; j < n; j++) {\n            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];\n        }\n    }\n    return dp[m - 1][n - 1];\n}\n\nint main() {\n    int m, n;\n    cin >> m >> n;\n    vector<vector<int>> grid(m, vector<int>(n));\n    for (int i = 0; i < m; i++) for (int j = 0; j < n; j++) cin >> grid[i][j];\n    cout << min_path_sum(grid) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2 2\n1 3\n1 5", "expected_output": "7"},
+            {"input": "0 0", "expected_output": "0"},
+            {"input": "1 1\n2", "expected_output": "2"},
+            {"input": "2 3\n1 2 3\n4 5 6", "expected_output": "12"},
+            {"input": "2 2\n1 4\n2 1", "expected_output": "4"}
+        ]
+    },
+    {
+        "id": 37,
+        "explanation": "Check if a string matches a simple regex pattern (only '.' and '*').",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nbool regex_match(string s, string pattern) {\n    int m = s.length(), n = pattern.length();\n    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));\n    dp[0][0] = true;\n    for (int j = 2; j <= n; j += 2) {\n        if (pattern[j - 1] == '*') dp[0][j] = dp[0][j - 2];\n    }\n    for (int i = 1; i <= m; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (pattern[j - 1] == '.' || pattern[j - 1] == s[i - 1]) dp[i][j] = dp[i - 1][j - 1];\n            else if (pattern[j - 1] == '*') {\n                dp[i][j] = dp[i][j - 2] || (dp[i - 1][j] && (s[i - 1] == pattern[j - 2] || pattern[j - 2] == '.'));\n            }\n        }\n    }\n    return dp[m][n];\n}\n\nint main() {\n    string s, pattern;\n    cin >> s >> pattern;\n    cout << boolalpha << regex_match(s, pattern) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "aa a*", "expected_output": "true"},
+            {"input": "ab a*", "expected_output": "false"},
+            {"input": " .", "expected_output": "true"},
+            {"input": "a a", "expected_output": "true"},
+            {"input": "abc .*", "expected_output": "true"}
+        ]
+    },
+    {
+        "id": 38,
+        "explanation": "Generate the next permutation of a vector in lexicographical order.",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<int> next_permutation(vector<int> vec) {\n    if (!next_permutation(vec.begin(), vec.end())) sort(vec.begin(), vec.end());\n    return vec;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> vec(n);\n    for (int i = 0; i < n; i++) cin >> vec[i];\n    vector<int> result = next_permutation(vec);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3\n1 2 3", "expected_output": "1 3 2"},
+            {"input": "3\n3 2 1", "expected_output": "1 2 3"},
+            {"input": "1\n1", "expected_output": "1"},
+            {"input": "3\n1 1 5", "expected_output": "1 5 1"},
+            {"input": "4\n4 3 2 1", "expected_output": "1 2 3 4"}
+        ]
+    },
+    {
+        "id": 39,
+        "explanation": "Merge overlapping intervals in a vector of pairs.",
+        "function": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nvector<pair<int, int>> interval_merge(vector<pair<int, int>> intervals) {\n    if (intervals.empty()) return {};\n    sort(intervals.begin(), intervals.end());\n    vector<pair<int, int>> result;\n    result.push_back(intervals[0]);\n    for (int i = 1; i < intervals.size(); i++) {\n        if (result.back().second >= intervals[i].first) {\n            result.back().second = max(result.back().second, intervals[i].second);\n        } else {\n            result.push_back(intervals[i]);\n        }\n    }\n    return result;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<pair<int, int>> intervals(n);\n    for (int i = 0; i < n; i++) cin >> intervals[i].first >> intervals[i].second;\n    vector<pair<int, int>> result = interval_merge(intervals);\n    for (auto interval : result) cout << interval.first << \" \" << interval.second << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3\n1 3\n2 6\n8 10", "expected_output": "1 6 8 10"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\n1 2", "expected_output": "1 2"},
+            {"input": "2\n1 4\n4 5", "expected_output": "1 5"},
+            {"input": "2\n1 2\n3 4", "expected_output": "1 2 3 4"}
+        ]
+    },
+    {
+        "id": 40,
+        "explanation": "Find the shortest word ladder length from start to end using BFS.",
+        "function": "#include <iostream>\n#include <string>\n#include <vector>\n#include <queue>\n#include <unordered_set>\nusing namespace std;\n\nint word_ladder(string start, string end, vector<string> words) {\n    if (start == end) return 1;\n    unordered_set<string> dict(words.begin(), words.end());\n    if (dict.find(end) == dict.end()) return 0;\n    queue<pair<string, int>> q;\n    q.push({start, 1});\n    dict.erase(start);\n    while (!q.empty()) {\n        string word = q.front().first;\n        int steps = q.front().second;\n        q.pop();\n        for (int i = 0; i < word.length(); i++) {\n            char orig = word[i];\n            for (char c = 'a'; c <= 'z'; c++) {\n                word[i] = c;\n                if (dict.find(word) != dict.end()) {\n                    if (word == end) return steps + 1;\n                    q.push({word, steps + 1});\n                    dict.erase(word);\n                }\n            }\n            word[i] = orig;\n        }\n    }\n    return 0;\n}\n\nint main() {\n    string start, end;\n    int n;\n    cin >> start >> end >> n;\n    vector<string> words(n);\n    for (int i = 0; i < n; i++) cin >> words[i];\n    cout << word_ladder(start, end, words) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "hit cog 6\nhot dot dog lot log cog", "expected_output": "5"},
+            {"input": "a c 3\na b c", "expected_output": "3"},
+            {"input": "start end 0", "expected_output": "0"},
+            {"input": "foo bar 2\nfar baz", "expected_output": "0"},
+            {"input": "abc def 3\nabd aef def", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 41,
+        "explanation": "Find the maximum area of water between two lines.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint max_area(vector<int> heights) {\n    int left = 0, right = heights.size() - 1, max_area = 0;\n    while (left < right) {\n        max_area = max(max_area, min(heights[left], heights[right]) * (right - left));\n        if (heights[left] < heights[right]) left++;\n        else right--;\n    }\n    return max_area;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> heights(n);\n    for (int i = 0; i < n; i++) cin >> heights[i];\n    cout << max_area(heights) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "9\n1 8 6 2 5 4 8 3 7", "expected_output": "49"},
+            {"input": "2\n1 1", "expected_output": "1"},
+            {"input": "0", "expected_output": "0"},
+            {"input": "4\n2 3 4 5", "expected_output": "6"},
+            {"input": "4\n5 4 3 2", "expected_output": "6"}
+        ]
+    },
+    {
+        "id": 42,
+        "explanation": "Implement Dijkstra's algorithm for shortest path in a weighted graph.",
+        "function": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <map>\nusing namespace std;\n\nint dijkstra(map<char, map<char, int>> graph, char start, char end) {\n    map<char, int> dist;\n    for (auto pair : graph) dist[pair.first] = INT_MAX;\n    dist[start] = 0;\n    priority_queue<pair<int, char>, vector<pair<int, char>>, greater<>> pq;\n    pq.push({0, start});\n    while (!pq.empty()) {\n        char u = pq.top().second;\n        int d = pq.top().first;\n        pq.pop();\n        if (u == end) return d;\n        if (d > dist[u]) continue;\n        for (auto neighbor : graph[u]) {\n            char v = neighbor.first;\n            int weight = neighbor.second;\n            if (dist[u] + weight < dist[v]) {\n                dist[v] = dist[u] + weight;\n                pq.push({dist[v], v});\n            }\n        }\n    }\n    return -1;\n}\n\nint main() {\n    int n;\n    char start, end;\n    cin >> n >> start >> end;\n    map<char, map<char, int>> graph;\n    for (int i = 0; i < n; i++) {\n        char u, v;\n        int w;\n        cin >> u >> v >> w;\n        graph[u][v] = w;\n    }\n    cout << dijkstra(graph, start, end) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2 A C\nA B 1\nB C 2", "expected_output": "3"},
+            {"input": "0 A B", "expected_output": "-1"},
+            {"input": "1 A A\nA A 0", "expected_output": "0"},
+            {"input": "3 A D\nA B 4\nB D 5\nA C 2", "expected_output": "9"},
+            {"input": "2 X Z\nX Y 3\nY Z 4", "expected_output": "7"}
+        ]
+    },
+    {
+        "id": 43,
+        "explanation": "Generate Huffman codes for characters based on frequency (simplified output).",
+        "function": "#include <iostream>\n#include <map>\n#include <string>\nusing namespace std;\n\nmap<char, string> huffman_codes(map<char, int> freq) {\n    map<char, string> codes;\n    int code = 0;\n    for (auto pair : freq) {\n        codes[pair.first] = to_string(code++);\n    }\n    return codes;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    map<char, int> freq;\n    for (int i = 0; i < n; i++) {\n        char c;\n        int f;\n        cin >> c >> f;\n        freq[c] = f;\n    }\n    map<char, string> result = huffman_codes(freq);\n    for (auto pair : result) cout << pair.first << \":\" << pair.second << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2\na 5\nb 9", "expected_output": "a:0 b:1"},
+            {"input": "0", "expected_output": ""},
+            {"input": "1\na 1", "expected_output": "a:0"},
+            {"input": "3\na 1\nb 1\nc 1", "expected_output": "a:0 b:1 c:2"},
+            {"input": "3\nx 10\ny 20\nz 30", "expected_output": "x:0 y:1 z:2"}
+        ]
+    },
+    {
+        "id": 44,
+        "explanation": "Check if parentheses in a string are balanced.",
+        "function": "#include <iostream>\n#include <string>\n#include <stack>\nusing namespace std;\n\nbool balanced_parentheses(string s) {\n    stack<char> st;\n    for (char c : s) {\n        if (c == '(') st.push(c);\n        else if (c == ')') {\n            if (st.empty()) return false;\n            st.pop();\n        }\n    }\n    return st.empty();\n}\n\nint main() {\n    string s;\n    cin >> s;\n    cout << boolalpha << balanced_parentheses(s) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "(()())", "expected_output": "true"},
+            {"input": "())", "expected_output": "false"},
+            {"input": "", "expected_output": "true"},
+            {"input": "()", "expected_output": "true"},
+            {"input": "(()", "expected_output": "false"}
+        ]
+    },
+    {
+        "id": 45,
+        "explanation": "Traverse a matrix in spiral order.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> spiral_order(vector<vector<int>> matrix) {\n    if (matrix.empty()) return {};\n    int m = matrix.size(), n = matrix[0].size();\n    vector<int> result;\n    int top = 0, bottom = m - 1, left = 0, right = n - 1;\n    while (top <= bottom && left <= right) {\n        for (int j = left; j <= right; j++) result.push_back(matrix[top][j]);\n        top++;\n        for (int i = top; i <= bottom; i++) result.push_back(matrix[i][right]);\n        right--;\n        if (top <= bottom) {\n            for (int j = right; j >= left; j--) result.push_back(matrix[bottom][j]);\n            bottom--;\n        }\n        if (left <= right) {\n            for (int i = bottom; i >= top; i--) result.push_back(matrix[i][left]);\n            left++;\n        }\n    }\n    return result;\n}\n\nint main() {\n    int m, n;\n    cin >> m >> n;\n    vector<vector<int>> matrix(m, vector<int>(n));\n    for (int i = 0; i < m; i++) for (int j = 0; j < n; j++) cin >> matrix[i][j];\n    vector<int> result = spiral_order(matrix);\n    for (int num : result) cout << num << \" \";\n    cout << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "2 2\n1 2\n3 4", "expected_output": "1 2 4 3"},
+            {"input": "0 0", "expected_output": ""},
+            {"input": "1 1\n1", "expected_output": "1"},
+            {"input": "3 3\n1 2 3\n4 5 6\n7 8 9", "expected_output": "1 2 3 6 9 8 7 4 5"},
+            {"input": "3 2\n1 2\n3 4\n5 6", "expected_output": "1 2 4 6 5 3"}
+        ]
+    },
+    {
+        "id": 46,
+        "explanation": "Find the minimum number of coins to make an amount using dynamic programming.",
+        "function": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint coin_change(vector<int> coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int i = 1; i <= amount; i++) {\n        for (int coin : coins) {\n            if (coin <= i) dp[i] = min(dp[i], dp[i - coin] + 1);\n        }\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}\n\nint main() {\n    int n, amount;\n    cin >> n >> amount;\n    vector<int> coins(n);\n    for (int i = 0; i < n; i++) cin >> coins[i];\n    cout << coin_change(coins, amount) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "3 11\n1 2 5", "expected_output": "3"},
+            {"input": "1 3\n2", "expected_output": "-1"},
+            {"input": "1 0\n1", "expected_output": "0"},
+            {"input": "2 4\n1 2", "expected_output": "2"},
+            {"input": "2 15\n5 10", "expected_output": "3"}
+        ]
+    },
+    {
+        "id": 47,
+        "explanation": "Check if two strings are anagrams.",
+        "function": "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nbool valid_anagram(string s1, string s2) {\n    if (s1.length() != s2.length()) return false;\n    sort(s1.begin(), s1.end());\n    sort(s2.begin(), s2.end());\n    return s1 == s2;\n}\n\nint main() {\n    string s1, s2;\n    cin >> s1 >> s2;\n    cout << boolalpha << valid_anagram(s1, s2) << endl;\n    return 0;\n}",
+        "test_cases": [
+            {"input": "listen silent", "expected_output": "true"},
+            {"input": "hello world", "expected_output": "false"},
+            {"input": "  ", "expected_output": "true"},
+            {"input": "a a", "expected_output": "true"},
+            {"input": "abc abcd", "expected_output": "false"}
+        ]
+    }
+]

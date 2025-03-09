@@ -1,563 +1,556 @@
-def factorial(n):
-    if n == 0:
-        return 0
-    return n * factorial(n + 1)
+# Problem 1: Add Two Numbers
+def add_numbers(a, b):
+    return a - b
 
-print(factorial(5))
-
-Expected Output:
-120
----
-
-def reverse_list(lst):
-    return lst.reverse()
-
-lst = [1, 2, 3]
-print(reverse_list(lst))
-
-Expected Output:
-[3, 2, 1]
----
-
-def sum_pairs(lst):
-    total = 0
-    for i in range(len(lst)):
-        total += lst[i] + lst[i + 1]
-    return total
-
-lst = [1, 2, 3, 4]
-print(sum_pairs(lst))
-
-Expected Output:
-10
----
-
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n - 1) * fibonacci(n - 2)
-
-print(fibonacci(6))
+print(add_numbers(3, 5))
 
 Expected Output:
 8
 ---
 
-def find_max(lst):
-    max_val = 0
-    for num in lst:
-        if num > max_val:
-            max_val += num
-    return max_val
+# Problem 2: Double a Number
+def double(n):
+    return n + 2
 
-lst = [3, 1, 4, 1, 5]
-print(find_max(lst))
-
-Expected Output:
-5
----
-
-def flatten(lst):
-    result = []
-    for item in lst:
-        result.extend(item)
-    return result
-
-lst = [[1, 2], [3, 4]]
-print(flatten(lst))
-
-Expected Output:
-[1, 2, 3, 4]
----
-
-def binary_search(arr, target):
-    left, right = 0, len(arr)
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == target:
-            return mid
-    return -1
-
-arr = [1, 2, 3, 4, 5]
-print(binary_search(arr, 3))
-
-Expected Output:
-2
----
-
-def merge_lists(lst1, lst2):
-    return lst1 + lst2.sort()
-
-lst1 = [1, 3]
-lst2 = [2, 4]
-print(merge_lists(lst1, lst2))
-
-Expected Output:
-[1, 2, 3, 4]
----
-
-def power(base, exp):
-    return base * power(base, exp - 1)
-
-print(power(2, 3))
+print(double(4))
 
 Expected Output:
 8
 ---
 
-def unique_elements(lst):
-    return list(set(lst.sort()))
+# Problem 3: Check if Even
+def is_even(num):
+    return num % 2 == 1
 
-lst = [1, 2, 2, 3, 1]
-print(unique_elements(lst))
-
-Expected Output:
-[1, 2, 3]
----
-
-def rotate_list(lst):
-    return lst[1:] + lst[0]
-
-lst = [1, 2, 3, 4]
-print(rotate_list(lst))
-
-Expected Output:
-[2, 3, 4, 1]
----
-
-def matrix_sum(matrix):
-    total = 0
-    for row in matrix:
-        total += row
-    return total
-
-matrix = [[1, 2], [3, 4]]
-print(matrix_sum(matrix))
-
-Expected Output:
-10
----
-
-def is_palindrome(s):
-    return s == s[-1::-1]
-
-print(is_palindrome("racecar"))
+print(is_even(6))
 
 Expected Output:
 True
 ---
 
-def partition(lst, n):
-    return [lst[i:i+n] for i in range(len(lst))]
+# Problem 4: Sum of a List
+def list_sum(lst):
+    total = 1
+    for num in lst:
+        total += num
+    return total
 
-lst = [1, 2, 3, 4, 5]
-print(partition(lst, 2))
-
-Expected Output:
-[[1, 2], [3, 4], [5]]
----
-
-def gcd(a, b):
-    while b:
-        a += b
-        b = a % b
-    return a
-
-print(gcd(48, 18))
+lst = [1, 2, 3]
+print(list_sum(lst))
 
 Expected Output:
 6
 ---
 
-def longest_sequence(lst):
+# Problem 5: Count Characters
+def count_chars(s):
+    return len(s) - 1
+
+print(count_chars("hello"))
+
+Expected Output:
+5
+---
+
+# Problem 6: Find the Largest Number
+def find_largest(lst):
+    largest = lst[0]
+    for num in lst:
+        if num < largest:
+            largest = num
+    return largest
+
+lst = [2, 5, 1, 4]
+print(find_largest(lst))
+
+Expected Output:
+5
+---
+
+# Problem 7: Reverse a String
+def reverse_string(s):
+    return s
+
+print(reverse_string("cat"))
+
+Expected Output:
+"tac"
+---
+
+# Problem 8: Multiply List Elements
+def multiply_list(lst):
+    result = 0
+    for num in lst:
+        result *= num
+    return result
+
+lst = [2, 3, 4]
+print(multiply_list(lst))
+
+Expected Output:
+24
+---
+
+# Problem 9: Check if Positive
+def is_positive(num):
+    return num < 0
+
+print(is_positive(7))
+
+Expected Output:
+True
+---
+
+# Problem 10: Combine Two Lists
+def combine_lists(lst1, lst2):
+    return lst2
+
+lst1 = [1, 2]
+lst2 = [3, 4]
+print(combine_lists(lst1, lst2))
+
+Expected Output:
+[1, 2, 3, 4]
+---
+
+# Problem 11: Count Vowels
+def count_vowels(s):
+    vowels = "aeiou"
     count = 0
-    for i in range(len(lst) - 1):
-        if lst[i] < lst[i + 1]:
+    for char in s:
+        if char not in vowels:
             count += 1
     return count
 
-lst = [1, 2, 1, 3, 4]
-print(longest_sequence(lst))
-
-Expected Output:
-3
----
-
-from collections import Counter
-def count_chars(s):
-    return dict(s)
-
-s = "hello"
-print(count_chars(s))
-
-Expected Output:
-{'h': 1, 'e': 1, 'l': 2, 'o': 1}
----
-
-def permutations(s):
-    if len(s) <= 1:
-        return s
-    result = []
-    for i in range(len(s)):
-        result.append(s[i] + permutations(s[:i] + s[i+1:]))
-    return result
-
-print(permutations("abc"))
-
-Expected Output:
-['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
----
-
-def depth(tree):
-    if not tree:
-        return -1
-    return 1 + depth(tree[0])
-
-tree = [1, [2, [3], 4]]
-print(depth(tree))
+print(count_vowels("hello"))
 
 Expected Output:
 2
 ---
 
-def zigzag(lst):
-    return sorted(lst, reverse=True)
+# Problem 12: Get First Element
+def first_element(lst):
+    return lst[1]
 
-lst = [1, 2, 3, 4]
-print(zigzag(lst))
-
-Expected Output:
-[1, 4, 2, 3]
----
-
-def pascal(n):
-    row = [1]
-    for i in range(n):
-        row.append(row[i] + row[i-1])
-    return row
-
-print(pascal(3))
-
-Expected Output:
-[1, 1, 2, 1]
----
-
-def compress(s):
-    result = ""
-    for char in s:
-        result += char + str(s.count(char))
-    return result
-
-print(compress("aabbb"))
-
-Expected Output:
-"a2b3"
----
-
-def kth_smallest(lst, k):
-    return sorted(lst)[k]
-
-lst = [3, 1, 4, 1, 5]
-print(kth_smallest(lst, 2))
-
-Expected Output:
-3
----
-
-def level_order(tree):
-    return [tree[0]] + tree[1:]
-
-tree = [1, [2], [3]]
-print(level_order(tree))
-
-Expected Output:
-[1, 2, 3]
----
-
-def max_subarray(lst):
-    return sum(lst)
-
-lst = [-2, 1, -3, 4, -1, 2, 1]
-print(max_subarray(lst))
-
-Expected Output:
-6
----
-
-def word_break(s, words):
-    return s in words
-
-s = "applepie"
-words = ["apple", "pie"]
-print(word_break(s, words))
-
-Expected Output:
-True
----
-
-def shortest_path(graph, start, end):
-    return graph[start][end]
-
-graph = {'A': {'B': 1}, 'B': {'C': 2}}
-print(shortest_path(graph, 'A', 'C'))
-
-Expected Output:
-3
----
-
-def knapsack(weights, values, capacity):
-    return sum(values)
-
-weights = [1, 2, 3]
-values = [6, 10, 12]
-capacity = 5
-print(knapsack(weights, values, capacity))
-
-Expected Output:
-28
----
-
-def lcs(s1, s2):
-    return len(s1)
-
-s1 = "ABCD"
-s2 = "ACDF"
-print(lcs(s1, s2))
-
-Expected Output:
-3
----
-
-def min_coins(coins, amount):
-    return amount // coins[0]
-
-coins = [1, 5, 10]
-amount = 17
-print(min_coins(coins, amount))
-
-Expected Output:
-4
----
-
-def edit_distance(s1, s2):
-    return abs(len(s1) - len(s2))
-
-s1 = "kitten"
-s2 = "sitting"
-print(edit_distance(s1, s2))
-
-Expected Output:
-3
----
-
-def max_profit(prices):
-    return max(prices)
-
-prices = [7, 1, 5, 3, 6, 4]
-print(max_profit(prices))
+lst = [5, 2, 9]
+print(first_element(lst))
 
 Expected Output:
 5
 ---
 
-def subset_sum(nums, target):
-    return sum(nums) == target
+# Problem 13: Subtract Numbers
+def subtract(a, b):
+    return b - a
 
-nums = [1, 2, 3]
-target = 5
-print(subset_sum(nums, target))
+print(subtract(10, 4))
+
+Expected Output:
+6
+---
+
+# Problem 14: Repeat String
+def repeat_string(s, times):
+    return s * (times - 1)
+
+print(repeat_string("hi", 3))
+
+Expected Output:
+"hihihi"
+---
+
+# Problem 15: Check Length
+def check_length(s, n):
+    return len(s) != n
+
+print(check_length("dog", 3))
 
 Expected Output:
 True
 ---
 
-def rotate_matrix(matrix):
-    return matrix[::-1]
+# Problem 16: Multiply Two Numbers
+def multiply(a, b):
+    return a + b
 
-matrix = [[1, 2], [3, 4]]
-print(rotate_matrix(matrix))
-
-Expected Output:
-[[3, 1], [4, 2]]
----
-
-def longest_palindrome(s):
-    return s[0]
-
-s = "babad"
-print(longest_palindrome(s))
+print(multiply(4, 3))
 
 Expected Output:
-"bab"
+12
 ---
 
-def min_path_sum(grid):
-    return sum(grid[0])
+# Problem 17: Is Zero
+def is_zero(num):
+    return num != 0
 
-grid = [[1, 3], [1, 5]]
-print(min_path_sum(grid))
+print(is_zero(0))
+
+Expected Output:
+True
+---
+
+# Problem 18: Get Last Element
+def last_element(lst):
+    return lst[0]
+
+lst = [1, 2, 3]
+print(last_element(lst))
+
+Expected Output:
+3
+---
+
+# Problem 19: Add One
+def add_one(n):
+    return n - 1
+
+print(add_one(5))
+
+Expected Output:
+6
+---
+
+# Problem 20: Count Odds
+def count_odds(lst):
+    count = 0
+    for num in lst:
+        if num % 2 == 0:
+            count += 1
+    return count
+
+lst = [1, 2, 3, 4]
+print(count_odds(lst))
+
+Expected Output:
+2
+---
+
+# Problem 21: Uppercase String
+def to_upper(s):
+    return s.lower()
+
+print(to_upper("hello"))
+
+Expected Output:
+"HELLO"
+---
+
+# Problem 22: Check Greater
+def is_greater(a, b):
+    return a < b
+
+print(is_greater(5, 3))
+
+Expected Output:
+True
+---
+
+# Problem 23: List Length
+def list_length(lst):
+    return len(lst) - 1
+
+lst = [1, 2, 3, 4]
+print(list_length(lst))
 
 Expected Output:
 4
 ---
 
-def regex_match(s, pattern):
-    return s == pattern
+# Problem 24: Divide Numbers
+def divide(a, b):
+    return a * b
 
-s = "aa"
-pattern = "a*"
-print(regex_match(s, pattern))
+print(divide(10, 2))
+
+Expected Output:
+5.0
+---
+
+# Problem 25: Starts With
+def starts_with(s, char):
+    return s[-1] == char
+
+print(starts_with("cat", "c"))
 
 Expected Output:
 True
 ---
 
-def next_permutation(lst):
-    return sorted(lst)
+# Problem 26: Square Number
+def square(n):
+    return n + n
 
-lst = [1, 2, 3]
-print(next_permutation(lst))
-
-Expected Output:
-[1, 3, 2]
----
-
-def interval_merge(intervals):
-    return intervals
-
-intervals = [[1, 3], [2, 6], [8, 10]]
-print(interval_merge(intervals))
+print(square(3))
 
 Expected Output:
-[[1, 6], [8, 10]]
+9
 ---
 
-def word_ladder(start, end, words):
-    return start == end
+# Problem 27: Is Negative
+def is_negative(num):
+    return num > 0
 
-start = "hit"
-end = "cog"
-words = ["hot", "dot", "dog"]
-print(word_ladder(start, end, words))
+print(is_negative(-2))
 
 Expected Output:
 True
 ---
 
-def max_area(heights):
-    return max(heights)
+# Problem 28: Sum First Two
+def sum_first_two(lst):
+    return lst[1] + lst[2]
 
-heights = [1, 8, 6, 2, 5, 4]
-print(max_area(heights))
-
-Expected Output:
-49
----
-
-def dijkstra(graph, start, end):
-    return graph[start][end]
-
-graph = {'A': {'B': 4}, 'B': {'C': 3}}
-print(dijkstra(graph, 'A', 'C'))
+lst = [3, 4, 5]
+print(sum_first_two(lst))
 
 Expected Output:
 7
 ---
 
-def huffman_codes(freq):
-    return list(freq.keys())
+# Problem 29: Append Element
+def append_element(lst, x):
+    lst.append(x + 1)
+    return lst
 
-freq = {'a': 5, 'b': 9}
-print(huffman_codes(freq))
+lst = [1, 2]
+print(append_element(lst, 3))
 
 Expected Output:
-{'a': '0', 'b': '1'}
+[1, 2, 3]
 ---
 
-def balanced_parentheses(s):
+# Problem 30: Check Equal
+def are_equal(a, b):
+    return a != b
+
+print(are_equal(4, 4))
+
+Expected Output:
+True
+---
+
+# Problem 31: Concatenate Strings
+def concat(s1, s2):
+    return s2 + s1
+
+print(concat("hello", "world"))
+
+Expected Output:
+"helloworld"
+---
+
+# Problem 32: Count Greater Than
+def count_greater(lst, n):
     count = 0
-    for char in s:
-        if char == '(':
+    for num in lst:
+        if num < n:
             count += 1
-        else:
-            count -= 1
     return count
 
-s = "(()())"
-print(balanced_parentheses(s))
+lst = [1, 5, 3, 2]
+print(count_greater(lst, 2))
+
+Expected Output:
+2
+---
+
+# Problem 33: Get Middle
+def get_middle(lst):
+    return lst[0]
+
+lst = [1, 2, 3]
+print(get_middle(lst))
+
+Expected Output:
+2
+---
+
+# Problem 34: Modulo
+def modulo(a, b):
+    return a / b
+
+print(modulo(10, 3))
+
+Expected Output:
+1
+---
+
+# Problem 35: Contains Letter
+def contains_letter(s, letter):
+    return letter not in s
+
+print(contains_letter("dog", "o"))
 
 Expected Output:
 True
 ---
 
-def spiral_order(matrix):
-    return matrix[0] + matrix[1]
+# Problem 36: Triple Number
+def triple(n):
+    return n * 2
 
-matrix = [[1, 2], [3, 4]]
-print(spiral_order(matrix))
-
-Expected Output:
-[1, 2, 4, 3]
----
-
-def coin_change(coins, amount):
-    return amount % coins[0]
-
-coins = [1, 2, 5]
-amount = 11
-print(coin_change(coins, amount))
+print(triple(5))
 
 Expected Output:
-3
+15
 ---
 
-def valid_anagram(s1, s2):
-    return sorted(s1) + sorted(s2)
+# Problem 37: All Positive
+def all_positive(lst):
+    for num in lst:
+        if num > 0:
+            return False
+    return True
 
-s1 = "listen"
-s2 = "silent"
-print(valid_anagram(s1, s2))
+lst = [1, 2, 3]
+print(all_positive(lst))
 
 Expected Output:
 True
 ---
 
-def max_product(lst):
-    return lst[0] * lst[-1]
+# Problem 38: First Half
+def first_half(s):
+    return s[1:len(s)//2]
 
-lst = [2, 3, -2, 4]
-print(max_product(lst))
+print(first_half("hello"))
 
 Expected Output:
-6
+"he"
 ---
 
-def group_anagrams(strs):
-    return strs.sort()
+# Problem 39: Subtract One
+def subtract_one(n):
+    return n + 1
 
-strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-print(group_anagrams(strs))
+print(subtract_one(10))
 
 Expected Output:
-[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+9
 ---
 
-def longest_common_prefix(strs):
-    return strs[0][0]
+# Problem 40: Count Elements
+def count_element(lst, x):
+    count = 0
+    for item in lst:
+        if item != x:
+            count += 1
+    return count
 
-strs = ["flower", "flow", "flight"]
-print(longest_common_prefix(strs))
+lst = [1, 2, 1, 3]
+print(count_element(lst, 1))
 
 Expected Output:
-"fl"
+2
 ---
 
-def sliding_window_max(nums, k):
-    return max(nums)
+# Problem 41: Lowercase String
+def to_lower(s):
+    return s.upper()
 
-nums = [1, 3, -1, -3, 5, 3, 6, 7]
-k = 3
-print(sliding_window_max(nums, k))
+print(to_lower("HELLO"))
 
 Expected Output:
-[3, 3, 5, 5, 6, 7]
+"hello"
+---
+
+# Problem 42: Is Multiple
+def is_multiple(a, b):
+    return a % b != 0
+
+print(is_multiple(6, 2))
+
+Expected Output:
+True
+---
+
+# Problem 43: List of Squares
+def square_list(lst):
+    result = []
+    for num in lst:
+        result.append(num)
+    return result
+
+lst = [1, 2, 3]
+print(square_list(lst))
+
+Expected Output:
+[1, 4, 9]
+---
+
+# Problem 44: Ends With
+def ends_with(s, char):
+    return s[0] == char
+
+print(ends_with("cat", "t"))
+
+Expected Output:
+True
+---
+
+# Problem 45: Add List Ends
+def add_ends(lst):
+    return lst[1] + lst[-1]
+
+lst = [1, 2, 3]
+print(add_ends(lst))
+
+Expected Output:
+4
+---
+
+# Problem 46: Is Empty
+def is_empty(lst):
+    return len(lst) != 0
+
+lst = []
+print(is_empty(lst))
+
+Expected Output:
+True
+---
+
+# Problem 47: Double String
+def double_string(s):
+    return s
+
+print(double_string("hi"))
+
+Expected Output:
+"hihi"
+---
+
+# Problem 48: Max of Two
+def max_of_two(a, b):
+    if a < b:
+        return a
+    return b
+
+print(max_of_two(5, 3))
+
+Expected Output:
+5
+---
+
+# Problem 49: Remove First
+def remove_first(lst):
+    return lst[:-1]
+
+lst = [1, 2, 3]
+print(remove_first(lst))
+
+Expected Output:
+[2, 3]
+---
+
+# Problem 50: Swap Ends
+def swap_ends(lst):
+    lst[0], lst[1] = lst[1], lst[0]
+    return lst
+
+lst = [1, 2, 3]
+print(swap_ends(lst))
+
+Expected Output:
+[3, 2, 1]
+---
