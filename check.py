@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from mysql.connector import Error
 from flask_cors import CORS
-import mysql.connector
+from dotenv import load_dotenv
 import subprocess
 import tempfile
 import random
@@ -9,22 +9,31 @@ import time
 import json
 import os
 import re
+import pymysql
+
 app = Flask(__name__)
 CORS(app)
+
+# Load .env file
+load_dotenv()
+
+# Database configuration
 DB_CONFIG = {
+    "host": "127.0.0.1",  # Use TCP/IP instead of socket
     "database": os.getenv("DB_DATABASE"),
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
-    "host": os.getenv("DB_HOST"),
-    "port": 3306 
+    "port": 3306,
 }
+
 def get_db_connection():
     try:
-        conn = mysql.connector.connect(**DB_CONFIG)
+        conn = pymysql.connect(**DB_CONFIG)
         return conn
     except Error as e:
         print(f"Error connecting to MySQL: {e}")
         return None
+
 @app.route('/submit_score', methods=['POST'])
 def submit_score():
     data = request.get_json()
@@ -70,16 +79,16 @@ def load_questions(file_path):
                 "expected_output": expected_output.strip()
             })
     return questions
-PY_QUESTIONS = load_questions("problems_python.txt")
-CPP_QUESTIONS = load_questions("problems_cpp.txt")
+PY_QUESTIONS = load_questions("C:/Users/hp/Desktop/Curieux/Bug-Bingo-Backend/problems_python.txt")
+CPP_QUESTIONS = load_questions("C:/Users/hp/Desktop/Curieux/Bug-Bingo-Backend/problems_cpp.txt")
 def load_questions1(file_path):
     if not os.path.exists(file_path):
         return []
     with open(file_path, "r") as file:
         questions = json.load(file)
     return questions
-PY_QUESTIONS1 = load_questions1("python.json")
-CPP_QUESTIONS1 = load_questions1("cpp.json")
+PY_QUESTIONS1 = load_questions1("C:/Users/hp/Desktop/Curieux/Bug-Bingo-Backend/python.json")
+CPP_QUESTIONS1 = load_questions1("C:/Users/hp/Desktop/Curieux/Bug-Bingo-Backend/cpp.json")
 @app.route('/ping', methods=['GET'])
 def ping():
     return jsonify({"message": "Server is awake!"}), 200
@@ -195,7 +204,7 @@ def save_submission(name, rollno, code, execution_time, result, language):
         conn.commit()
         cursor.close()
         conn.close()
-    except mysql.connector.Error as e:
+    except pymysql.connector.Error as e:
         print(f"Database error: {e}")
         conn.rollback()
         cursor.close()
