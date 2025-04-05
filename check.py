@@ -99,7 +99,7 @@ def set_questions():
     questions = PY_QUESTIONS if language == "python" else CPP_QUESTIONS
     if not questions:
         return jsonify({"error": "No questions available"}), 404
-    selected_questions = random.sample(questions, min(9, len(questions)))
+    selected_questions = random.sample(questions, min(25, len(questions)))
     return jsonify(selected_questions)
 @app.route('/set_questions1', methods=['POST'])
 def set_questions1():
@@ -108,7 +108,7 @@ def set_questions1():
     questions = PY_QUESTIONS1 if language == "python" else CPP_QUESTIONS1
     if not questions:
         return jsonify({"error": "No questions available"}), 404
-    selected_questions = random.sample(questions, min(9, len(questions)))
+    selected_questions = random.sample(questions, min(25, len(questions)))
     response = {"questions": selected_questions}
     return jsonify(response)
 @app.route('/execute', methods=['POST'])
