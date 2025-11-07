@@ -202,7 +202,7 @@ def execute1():
 def keep_server_awake():
     def ping():
         try:
-            requests.get("https://rank-list-backend.onrender.com/")
+            requests.get("https://bug-bingo-backend.onrender.com/ping")
         except Exception as e:
             print(f"Ping failed: {e}")
         threading.Timer(60, ping).start()
