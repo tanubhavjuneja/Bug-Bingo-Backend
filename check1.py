@@ -6,7 +6,8 @@ import random
 import time
 import json
 import os
-import re
+import threading 
+import requests
 app = Flask(__name__)
 CORS(app)
 def load_questions(file_path):
@@ -198,5 +199,13 @@ def execute1():
         return jsonify({"incorrect": False, "message": "Code execution timed out!"})
     except Exception as e:
         return jsonify({"incorrect": False, "message": f"Error: {str(e)}"})
+def keep_server_awake():
+    def ping():
+        try:
+            requests.get("https://rank-list-backend.onrender.com/")
+        except Exception as e:
+            print(f"Ping failed: {e}")
+        threading.Timer(60, ping).start()
+    ping()
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
