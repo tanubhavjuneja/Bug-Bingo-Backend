@@ -74,7 +74,7 @@ def reverse_string(s):
 print(reverse_string("cat"))
 
 Expected Output:
-"tac"
+tac
 ---
 
 # Problem 8: Multiply List Elements
@@ -156,7 +156,7 @@ def repeat_string(s, times):
 print(repeat_string("hi", 3))
 
 Expected Output:
-"hihihi"
+hihihi
 ---
 
 # Problem 15: Check Length
@@ -232,7 +232,7 @@ def to_upper(s):
 print(to_upper("hello"))
 
 Expected Output:
-"HELLO"
+HELLO
 ---
 
 # Problem 22: Check Greater
@@ -336,7 +336,7 @@ def concat(s1, s2):
 print(concat("hello", "world"))
 
 Expected Output:
-"helloworld"
+helloworld
 ---
 
 # Problem 32: Count Greater Than
@@ -416,7 +416,7 @@ def first_half(s):
 print(first_half("hello"))
 
 Expected Output:
-"he"
+he
 ---
 
 # Problem 39: Subtract One
@@ -451,7 +451,7 @@ def to_lower(s):
 print(to_lower("HELLO"))
 
 Expected Output:
-"hello"
+hello
 ---
 
 # Problem 42: Is Multiple
@@ -517,7 +517,7 @@ def double_string(s):
 print(double_string("hi"))
 
 Expected Output:
-"hihi"
+hihi
 ---
 
 # Problem 48: Max of Two
